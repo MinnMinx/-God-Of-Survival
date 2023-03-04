@@ -20,15 +20,17 @@ public class MapController : MonoBehaviour
         Refresh();
 	}
 
-    public void Move(float x, float y)
+    public void SetPosition(Vector2 playerOffset)
     {
-        if (materialBlock == null || _renderer == null)
-        {
-            Refresh();
-        }
+		if (materialBlock == null || _renderer == null)
+		{
+			Refresh();
+		}
 		Vector4 textureVector = materialBlock.GetVector("_MainTex_ST");
-        textureVector.z = (textureVector.z + x) % 1;    // offset.x will always be in range 0-1
-        textureVector.w = (textureVector.w + y) % 1;    // offset.y will always be in range 0-1
+
+		// is using orthographic camera, Vertices will always be placed on (2x, 2y)
+		textureVector.z = playerOffset.x / 2f * uvScale.x % 1;    // offset.x will always be in range 0-1
+		textureVector.w = playerOffset.y / 2f * uvScale.y % 1;    // offset.y will always be in range 0-1
 		materialBlock.SetVector("_MainTex_ST", textureVector);
 		_renderer.SetPropertyBlock(materialBlock);
 	}
@@ -56,7 +58,10 @@ public class MapController : MonoBehaviour
         Mesh mesh = new Mesh();
 
         Vector2 worldScreenSize = Camera.main.ViewportToWorldPoint(Vector2.one);
+
 		// set vervices
+		// is using orthographic camera, so ViewportToWorldPoint(1, 1)
+        // will always return half of screen size
 		mesh.SetVertices(new Vector3[]
         {
             new Vector3(-worldScreenSize.x, worldScreenSize.y),   // top left
@@ -77,9 +82,10 @@ public class MapController : MonoBehaviour
         {
             new Vector2(0, worldScreenSize.y * uvScale.y),      // top left
             worldScreenSize * uvScale,                          // top right
-            new Vector2(0, 0),                                  // bottom left
+            Vector2.zero,                                       // bottom left
             new Vector2(worldScreenSize.x * uvScale.x, 0),      // bottom right
         };
-        return mesh;
+
+		return mesh;
     }
 }
