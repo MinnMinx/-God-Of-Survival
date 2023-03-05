@@ -61,7 +61,7 @@ public class PositionController : MonoBehaviour
 		}
 	}
 
-	public void RegisterTransform(PositionComponent newComponent)
+	public void RegisterComponent(PositionComponent newComponent)
     {
 		if (!positionComponents.Contains(newComponent))
         {
