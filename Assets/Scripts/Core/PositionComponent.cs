@@ -13,13 +13,20 @@ public class PositionComponent : MonoBehaviour
 	/// Vector3 version of position of object on the map.
 	/// (z is always = 0)
 	/// </summary>
-	public Vector3 Position3 => new Vector3(Position.x, Position.y, 0);
+	public Vector3 Position3
+	{
+		get => new Vector3(Position.x, Position.y, 0);
+		set
+		{
+			this.Position = value;
+		}
+	}
 
-    /// <summary>
-    /// DON'T USE THIS. For this will be update by PositionController
-    /// </summary>
-    /// <param name="playerOffset">For input player's offset</param>
-    public void _internal_UpdatePosition(Vector2 playerOffset)
+	/// <summary>
+	/// DON'T USE THIS. For this will be update by PositionController
+	/// </summary>
+	/// <param name="playerOffset">For input player's offset</param>
+	public void _internal_UpdatePosition(Vector2 playerOffset)
     {
         transform.position = Position - playerOffset;
     }
