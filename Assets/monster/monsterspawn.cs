@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Monsterõ
+namespace Monster
 {
     public class monsterspawn : MonoBehaviour
     {
@@ -20,7 +20,6 @@ namespace Monsterõ
         // Start is called before the first frame update
         void Start()
         {
-            saveScreenSize();
             timer = gameObject.AddComponent<Timer>();
             timer.duration = 2f;
             timer.run();
@@ -29,6 +28,7 @@ namespace Monsterõ
         // Update is called once per frame
         void Update()
         {
+            saveScreenSize();
             if (timer.finished)
             {
                 Vector3 pos = new Vector3(UnityEngine.Random.Range(screenLeft - 10, screenRight + 10), UnityEngine.Random.Range(screenBottom - 10, screenTop + 10), -Camera.main.transform.position.z);
