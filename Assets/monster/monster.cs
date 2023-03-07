@@ -14,11 +14,11 @@ namespace Monster
 
         public int atk;
 
-        public double hp;
+        public float hp;
 
-        private double heso = 0.5;
+        private float heso = 0.5F;
 
-        public double atkrange;
+        public float atkrange;
 
         public int level;
 
@@ -51,9 +51,10 @@ namespace Monster
             }
         }
 
-        public double GetHp(double basehp)
+        public float GetHp(float basehp)
         {
-            hp = basehp * Math.Pow(level, heso);
+            float a = (float)Math.Pow(level, heso);
+            hp = basehp * a;
             return hp;
         }
 
@@ -63,9 +64,9 @@ namespace Monster
             cd = 0;
         }
 
-        public void takedamage()
+        public void takedamage(float dame)
         {
-            Debug.Log("");
+            hp = hp - dame;
         }
     }
 }
