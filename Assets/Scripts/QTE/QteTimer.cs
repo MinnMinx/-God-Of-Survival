@@ -28,5 +28,6 @@ namespace QTE
 
         public bool IsWarnedTimeOver => indicatorDuration < 0 || timeSinceStart >= indicatorDuration;
         public float NormalizedTime => Mathf.Clamp01(timeSinceStart / indicatorDuration);
+        public float TimeSinceStart => timeSinceStart;
     }
 }
