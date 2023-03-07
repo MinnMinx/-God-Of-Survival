@@ -7,33 +7,70 @@ namespace Monster
 {
     public class Monster : MonoBehaviour
     {
-        Transform destination; // Khai báo biến destination kiểu Vector3
+        Transform destination; // player's transfrom
 
         [SerializeField]
-        public float speed ; // Khai báo tốc độ di chuyển của Object
+        private float speed;
+        public float Speed
+        {
+            get { return speed; }
+            set { speed = value; }
+        }
 
-        public int atk;
+        private float atk;
+        public float Atk
+        {
+            get { return atk; }
+            set { atk = value; }
+        }
 
-        public float hp;
+        private float basehp;
+        public float Basehp
+        {
+            get { return basehp; }
+            set { basehp = value; }
+        }
+
+        private float hp;
+        public float Hp
+        {
+            get { return hp; }
+            set { hp = value; }
+        }
 
         private float heso = 0.5F;
 
-        public float atkrange;
+        private float atkrange;
+        public float Atkrange
+        {
+            get { return atkrange; }
+            set { atkrange = value; }
+        }
 
-        public int level;
+        private int level;
 
-        public float atkspeed;
+        private float atkspeed;
+        public float Atkspeed
+        {
+            get { return atkspeed; }
+            set { atkspeed = value; }
+        }
 
-        public float cd;
+        private float cd;
+        public float Cd
+        {
+            get { return cd; }
+            set { cd = value; }
+        }
 
-        GameObject player;
+        private GameObject player;
 
 
         public void Start()
         {
             player = GameObject.Find("Circle");
             destination = player.transform;
-            level = player.GetComponent<Player>().level;
+            level = player.GetComponent<Player>().Level;
         }
 
         // Update được gọi mỗi frame
