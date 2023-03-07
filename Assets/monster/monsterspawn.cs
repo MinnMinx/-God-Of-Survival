@@ -1,15 +1,14 @@
 using Monster;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Monster
+namespace Monsterõ
 {
     public class monsterspawn : MonoBehaviour
     {
         [SerializeField]
-        List<GameObject> monsters;
+        GameObject monster;
 
         Timer timer;
 
@@ -21,6 +20,7 @@ namespace Monster
         // Start is called before the first frame update
         void Start()
         {
+            saveScreenSize();
             timer = gameObject.AddComponent<Timer>();
             timer.duration = 2f;
             timer.run();
@@ -29,19 +29,9 @@ namespace Monster
         // Update is called once per frame
         void Update()
         {
-            saveScreenSize();
             if (timer.finished)
             {
-                System.Random rnd = new System.Random();
-                List<float> x = new List<float>();
-                x.Add(UnityEngine.Random.Range(screenLeft - 10, screenLeft));
-                x.Add(UnityEngine.Random.Range(screenRight, screenLeft + 10));
-
-                List<float> y = new List<float>();
-                y.Add(UnityEngine.Random.Range(screenBottom - 10, screenBottom));
-                y.Add(UnityEngine.Random.Range(screenTop, screenTop + 10));
-
-                Vector3 pos = new Vector3(x[rnd.Next(x.Count)], y[rnd.Next(y.Count)], 0);
+                Vector3 pos = new Vector3(UnityEngine.Random.Range(screenLeft - 10, screenRight + 10), UnityEngine.Random.Range(screenBottom - 10, screenTop + 10), -Camera.main.transform.position.z);
                 spawn(pos);
                 timer.run();
             }
@@ -51,9 +41,9 @@ namespace Monster
 
         public void spawn(Vector3 position)
         {
-            System.Random rnd = new System.Random();
-            GameObject monster = Instantiate(monsters[rnd.Next(monsters.Count)]);
-            monster.transform.position = position;
+            GameObject ball = Instantiate(monster);
+            ball.transform.position = position;
+
         }
 
         private void saveScreenSize()
