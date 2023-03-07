@@ -11,21 +11,16 @@ namespace Monster
 {
     public class MonsterSword : Monster
     {
-        float basehp = 4;
         private new void Start()
         {
             base.Start();
-            atk = 5;
-            hp = base.GetHp(basehp);
-            atkrange = 5;
-            speed = 1;
-            atkspeed = 2;
-            cd = 2;
-        }
-
-        private new void Update()
-        {
-            base.Update();
+            Atk = 5;
+            Basehp = 4;
+            Hp = base.GetHp(Basehp);
+            Atkrange = 5;
+            Speed = 1;
+            Atkspeed = 2;
+            Cd = 2;
         }
     }
 }

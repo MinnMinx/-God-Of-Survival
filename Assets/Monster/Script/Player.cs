@@ -6,12 +6,30 @@ namespace Monster
 {
     public class Player : MonoBehaviour
     {
-        float hp = 100;
+        private float hp = 100;
+        private float xp;
+
         [SerializeField]
-        float speed = 5;
-        float atk;
-        float xp;
-        public int level = 5;
+        private float speed = 5;
+        public float Speed
+        {
+            get { return speed; }
+            set { speed= value; }
+        }
+
+        private float atk;
+        public float Atk
+        {
+            get { return atk; }
+            set { atk = value; }
+        }
+        
+        private int level = 5;
+        public int Level
+        {
+            get { return level; }
+            set { level = value; }
+        }
 
         [SerializeField]
         private MapController mapCtrl; // Will move this into input controller in the future
@@ -47,7 +65,7 @@ namespace Monster
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            takedamage(collision.gameObject.GetComponent<Monster>().atk);
+            takedamage(collision.gameObject.GetComponent<Monster>().Atk);
             Debug.Log("HP: " + hp);
         }
 
