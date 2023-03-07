@@ -6,11 +6,13 @@ namespace Monster
 {
     public class CameraController : MonoBehaviour
     {
-        Transform transforme;
+        [SerializeField]
+        private Transform transforme;
         // Start is called before the first frame update
         void Start()
         {
-            transforme = GameObject.Find("Circle").transform;
+            if (transforme == null)
+                transforme = GameObject.Find("Circle").transform;
         }
 
         // Update is called once per frame

@@ -7,10 +7,14 @@ namespace Monster
     public class Player : MonoBehaviour
     {
         float hp = 100;
+        [SerializeField]
         float speed = 5;
         float atk;
         float xp;
         public int level = 5;
+
+        [SerializeField]
+        private MapController mapCtrl; // Will move this into input controller in the future
 
         // Start is called before the first frame update
         void Start()
@@ -35,6 +39,10 @@ namespace Monster
             }
             // move
             transform.position = v;
+            if (mapCtrl != null)
+            {
+                mapCtrl.SetPosition(v);
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)

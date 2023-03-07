@@ -29,11 +29,14 @@ public class MapController : MonoBehaviour
 		Vector4 textureVector = materialBlock.GetVector("_MainTex_ST");
 
 		// is using orthographic camera, Vertices will always be placed on (2x, 2y)
-		textureVector.z = playerOffset.x / 2f * uvScale.x % 1;    // offset.x will always be in range 0-1
-		textureVector.w = playerOffset.y / 2f * uvScale.y % 1;    // offset.y will always be in range 0-1
+		textureVector.z = playerOffset.x / 2f * uvScale.x;    // offset.x will always be in range 0-1
+		textureVector.w = playerOffset.y / 2f * uvScale.y;    // offset.y will always be in range 0-1
 		materialBlock.SetVector("_MainTex_ST", textureVector);
 		_renderer.SetPropertyBlock(materialBlock);
-	}
+
+        // set transform
+        transform.position = playerOffset;
+    }
 
     void Refresh()
     {
