@@ -1,3 +1,4 @@
+using Assets.monster;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,10 @@ namespace Monster
 {
     public class player : MonoBehaviour
     {
-
+        double hp = 100;
         float move = 5;
+
+        public int level = 1;
 
         // Start is called before the first frame update
         void Start()
@@ -32,6 +35,11 @@ namespace Monster
             }
             // move
             transform.position = v;
+        }
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            Debug.Log("aaa" + hp);
         }
     }
 }

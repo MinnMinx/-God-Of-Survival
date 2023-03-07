@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2472380861746782344}
   - component: {fileID: 2472380861746782345}
-  - component: {fileID: 2472380861746782350}
+  - component: {fileID: -5917219176091239940}
+  - component: {fileID: -8991796664420631100}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -85,7 +86,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2472380861746782350
+--- !u!61 &-5917219176091239940
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472380861746782351}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: a1dd3b2f927966a42a4a7ad6bed35e45, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &-8991796664420631100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,8 +121,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2472380861746782351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bc1ff2d6dbe0ba4eabd4d249621595e, type: 3}
+  m_Script: {fileID: 11500000, guid: be844d1beb8c6634aae7d2152eb3d94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destination: {fileID: 0}
-  speed: 1
+  speed: 0
+  atk: 0
+  hp: 0
+  atkrange: 0
+  level: 0
+  atkspeed: 0
+  cd: 0
