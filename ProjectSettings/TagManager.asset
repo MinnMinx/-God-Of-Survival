@@ -47,3 +47,6 @@ TagManager:
   - name: Stage
     uniqueID: 1103158841
     locked: 0
+  - name: Indicator
+    uniqueID: 2749310499
+    locked: 0
