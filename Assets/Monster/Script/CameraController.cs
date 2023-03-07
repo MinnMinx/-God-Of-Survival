@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Monster
 {
-    public class cameracontroller : MonoBehaviour
+    public class CameraController : MonoBehaviour
     {
         Transform transforme;
         // Start is called before the first frame update

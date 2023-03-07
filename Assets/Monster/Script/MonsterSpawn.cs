@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Monster
 {
-    public class monsterspawn : MonoBehaviour
+    public class MonsterSpawn : MonoBehaviour
     {
         [SerializeField]
         List<GameObject> monsters;

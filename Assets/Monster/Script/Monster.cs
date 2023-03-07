@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Monster
 {
-    public class monster : MonoBehaviour
+    public class Monster : MonoBehaviour
     {
         Transform destination; // Khai báo biến destination kiểu Vector3
 
@@ -33,7 +33,7 @@ namespace Monster
         {
             player = GameObject.Find("Circle");
             destination = player.transform;
-            level = player.GetComponent<player>().level;
+            level = player.GetComponent<Player>().level;
         }
 
         // Update được gọi mỗi frame

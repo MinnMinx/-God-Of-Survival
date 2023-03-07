@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Monster
 {
-    public class player : MonoBehaviour
+    public class Player : MonoBehaviour
     {
         float hp = 100;
         float speed = 5;
@@ -39,7 +39,7 @@ namespace Monster
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            takedamage(collision.gameObject.GetComponent<monster>().atk);
+            takedamage(collision.gameObject.GetComponent<Monster>().atk);
             Debug.Log("HP: " + hp);
         }
 
