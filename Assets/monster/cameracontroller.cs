@@ -2,19 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cameracontroller : MonoBehaviour
+namespace Monster
 {
-    Transform transforme;
-    // Start is called before the first frame update
-    void Start()
+    public class cameracontroller : MonoBehaviour
     {
-        transforme = GameObject.Find("Circle").transform;
-    }
+        Transform transforme;
+        // Start is called before the first frame update
+        void Start()
+        {
+            transforme = GameObject.Find("Circle").transform;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        Vector3 v = new Vector3(transforme.position.x,transforme.position.y,transform.position.z);
-        transform.position = v;
+        // Update is called once per frame
+        void Update()
+        {
+            Vector3 v = new Vector3(transforme.position.x, transforme.position.y, transform.position.z);
+            transform.position = v;
+        }
     }
 }

@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace monster
+namespace Monster
 {
-    public class monstersword : Monster.monster
+    public class monstersword : monster
     {
         float basehp = 4;
         private new void Start()
