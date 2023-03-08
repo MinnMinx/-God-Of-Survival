@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,5 +14,14 @@ public class MolotovCocktailController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            //other.GetComponent<Enemy>().TakeDamage(ATKBase); // gây sát thương
+            Destroy(gameObject); // phá hủy quả cầu lửa
+        }
     }
 }
