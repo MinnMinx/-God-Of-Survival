@@ -34,12 +34,12 @@ namespace Monster
             {
                 System.Random rnd = new System.Random();
                 List<float> x = new List<float>();
-                x.Add(UnityEngine.Random.Range(screenLeft - 10, screenLeft));
-                x.Add(UnityEngine.Random.Range(screenRight, screenLeft + 10));
+                x.Add(UnityEngine.Random.Range(screenLeft - 1, screenLeft));
+                x.Add(UnityEngine.Random.Range(screenRight, screenLeft + 1));
 
                 List<float> y = new List<float>();
-                y.Add(UnityEngine.Random.Range(screenBottom - 10, screenBottom));
-                y.Add(UnityEngine.Random.Range(screenTop, screenTop + 10));
+                y.Add(UnityEngine.Random.Range(screenBottom - 1, screenBottom));
+                y.Add(UnityEngine.Random.Range(screenTop, screenTop + 1));
 
                 Vector3 pos = new Vector3(x[rnd.Next(x.Count)], y[rnd.Next(y.Count)], 0);
                 spawn(pos);

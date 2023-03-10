@@ -64,10 +64,15 @@ namespace Monster
         }
 
         private GameObject player;
+        float screenLeft;
+        float screenRight;
+        float screenTop;
+        float screenBottom;
 
 
         public void Start()
         {
+            saveScreenSize();
             player = GameObject.Find("Circle");
             destination = player.transform;
             level = player.GetComponent<Player>().Level;
@@ -86,6 +91,8 @@ namespace Monster
             {
                 Attack();
             }
+
+            if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
         }
 
         public float GetHp(float basehp)
@@ -104,6 +111,26 @@ namespace Monster
         public void takedamage(float dame)
         {
             hp = hp - dame;
+        }
+
+        void Despawn()
+        {
+            Destroy(this.gameObject);
+        }
+
+        private void saveScreenSize()
+        {
+            float screenWidth = Screen.width;
+            float screenHeight = Screen.height;
+            float screenZ = -Camera.main.transform.position.z;
+            Vector3 lowerLeftCornerScreen = new Vector3(0, 0, screenZ);
+            Vector3 upperRightCornerScreen = new Vector3(screenWidth, screenHeight, screenZ);
+            Vector3 lowerLeftCornerWorld = Camera.main.ScreenToWorldPoint(lowerLeftCornerScreen);
+            Vector3 upperRightCornerWorld = Camera.main.ScreenToWorldPoint(upperRightCornerScreen);
+            screenLeft = lowerLeftCornerWorld.x;
+            screenRight = upperRightCornerWorld.x;
+            screenTop = upperRightCornerWorld.y;
+            screenBottom = lowerLeftCornerWorld.y;
         }
     }
 }
