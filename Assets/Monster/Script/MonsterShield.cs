@@ -12,7 +12,7 @@ namespace Monster
             Atk = 4;
             Basehp = 4;
             Hp = base.GetHp(Basehp);
-            Atkrange = 5;
+            Atkrange = 0;
             Speed = 1;
             Atkspeed = 2;
             Cd = 2;           

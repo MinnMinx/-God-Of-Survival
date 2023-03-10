@@ -34,10 +34,12 @@ namespace Monster
         [SerializeField]
         private MapController mapCtrl; // Will move this into input controller in the future
 
+        private SpriteRenderer sprite;
+
         // Start is called before the first frame update
         void Start()
         {
-
+            sprite = GetComponent<SpriteRenderer>();
         }
 
         // Update is called once per frame
@@ -49,6 +51,8 @@ namespace Monster
             if (horizontal != 0)
             {
                 v.x += horizontal * speed * Time.deltaTime;
+                if (horizontal >= 0) sprite.flipX= false;
+                else sprite.flipX= true;
             }
 
             if (vertical != 0)
