@@ -9,6 +9,9 @@ namespace Monster
     public class MonsterSpawn : MonoBehaviour
     {
         [SerializeField]
+        private Core.PlayerController player;
+
+        [SerializeField]
         List<GameObject> monsters;
 
         Timer timer;
@@ -54,6 +57,7 @@ namespace Monster
             System.Random rnd = new System.Random();
             GameObject monster = Instantiate(monsters[rnd.Next(monsters.Count)]);
             monster.transform.position = position;
+            monster.GetComponent<Monster>().SetPlayer(player);
         }
 
         private void saveScreenSize()

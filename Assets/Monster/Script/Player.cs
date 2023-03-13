@@ -1,3 +1,4 @@
+using Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,7 +64,7 @@ namespace Monster
             transform.position = v;
             if (mapCtrl != null)
             {
-                mapCtrl.SetPosition(v);
+                //mapCtrl.SetPosition(v);
             }
         }
 
