@@ -5,17 +5,10 @@ namespace Item
 {
     public class MysteriousPotion : PickUp
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+		public override void OnPickUp(PickUpController.PickUpContext affectStats)
+		{
+			throw new System.NotImplementedException();
+		}
     }
 
 }

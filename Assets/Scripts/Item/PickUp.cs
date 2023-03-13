@@ -1,21 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace Item
 {
-    public class PickUp : MonoBehaviour
+    public abstract class PickUp : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+		private float countDownUntilDespawn = 10;
+		private void Start()
+		{
+			OnSpawn();
+		}
 
-        }
+		public virtual void OnSpawn() { }
+		public virtual void OnDespawn() { }
+        public abstract void OnPickUp (PickUpController.PickUpContext context);
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-    }
+		private void OnBecameInvisible()
+		{
+			countDownUntilDespawn -= Time.deltaTime;
+			if (countDownUntilDespawn <= 0)
+			{
+				OnDespawn();
+				Destroy(gameObject);
+			}
+		}
+		private void OnBecameVisible()
+		{
+			countDownUntilDespawn = 10;
+		}
+	}
 }
 

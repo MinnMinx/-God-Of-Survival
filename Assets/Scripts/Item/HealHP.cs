@@ -1,21 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace Item
 {
     public class HealHP : PickUp
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-    }
+		public override void OnPickUp(PickUpController.PickUpContext affectStats)
+		{
+			//affectStats.Health += 20;
+			affectStats.player.Heal(20);
+		}
+	}
 
 }

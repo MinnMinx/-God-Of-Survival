@@ -13,8 +13,9 @@ namespace Core
 
         private SpriteRenderer spr;
 
-        public float BaseAttack => stats.baseAtk;
-        public bool IsDead => stats.health <= 0;
+        public float BaseAttack => stats.baseAtk * stats.atkMultipler;
+        public float AttackMultipler => stats.atkMultipler;
+        public bool IsDead => stats.Health <= 0;
         public int Level => playerLeveling.Level;
         public float NormalizedExpProgress => playerLeveling.ExpProgress;
 
@@ -44,23 +45,25 @@ namespace Core
 
 		public void TakeDamage(float value)
         {
-            if (stats.shield > value)
+            if (stats.Shield > value)
             {
-                stats.shield -= value;
+                stats.Shield -= value;
             }
-            else if (stats.shield > 0)
+            else if (stats.Shield > 0)
             {
-                float damageLeft = value - stats.shield;
-                stats.shield = 0;
-                stats.health -= damageLeft;
+                float damageLeft = value - stats.Shield;
+                stats.Shield = 0;
+                stats.Health -= damageLeft;
             }
             else
             {
-                stats.health -= value;
+                stats.Health -= value;
             }
         }
 
         public void ReceiveExp(float value = 1) => playerLeveling.ReceiveExp(value);
+
+        public void Heal(float value) => stats.Health += value;
 
         public class PlayerLeveling
         {
@@ -98,9 +101,27 @@ namespace Core
 		[Serializable]
 		public class PlayerStat
 		{
-			public float health = 100f;
-			public float shield = 100f;
+			private float health = 100f;
+            public float Health
+            {
+                get => health;
+                set
+                {
+                    Debug.Log(value);
+                    health = Mathf.Clamp(value, 0, 100);
+                }
+            }
+			private float shield = 100f;
+			public float Shield
+			{
+				get => shield;
+				set
+				{
+					shield = Mathf.Clamp(value, 0, 100);
+				}
+			}
 			public float baseAtk = 1f;
+			public float atkMultipler = 1f;
 			public float baseSpeed = 1f;
 			public float speedMultipler = 1f;
 		}
