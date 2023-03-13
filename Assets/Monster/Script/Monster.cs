@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerCtrl = Core.PlayerController;
 
 namespace Monster
 {
@@ -63,7 +64,6 @@ namespace Monster
             set { cd = value; }
         }
 
-        private GameObject player;
         float screenLeft;
         float screenRight;
         float screenTop;
@@ -73,9 +73,12 @@ namespace Monster
         public void Start()
         {
             saveScreenSize();
-            player = GameObject.Find("Circle");
+        }
+
+        public void SetPlayer(PlayerCtrl player)
+        {
             destination = player.transform;
-            level = player.GetComponent<Player>().Level;
+            level = player.Level;
         }
 
         // Update được gọi mỗi frame

@@ -1,3 +1,4 @@
+using Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -57,7 +58,7 @@ public class PositionController : MonoBehaviour
 		// Update map position
 		if (mapCtrl != null)
 		{
-			mapCtrl.SetPosition(playerOffset);
+			//mapCtrl.SetPosition(playerOffset);
 		}
 	}
 
