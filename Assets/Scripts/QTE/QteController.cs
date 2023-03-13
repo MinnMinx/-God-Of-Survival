@@ -35,7 +35,7 @@ namespace QTE {
                     Destroy((currentQte as MonoBehaviour).gameObject);
                 }
 
-                var gameObj = Instantiate(qtePrefabs[Random.Range(0, qtePrefabs.Length)]);
+                var gameObj = Instantiate(qtePrefabs[Random.Range(0, qtePrefabs.Length)], transform);
                 if ((currentQte = gameObj.GetComponent(typeof(IQte)) as IQte) == null)
                 {
                     Debug.Log("Cannot convert this way");
@@ -54,7 +54,6 @@ namespace QTE {
         void ResetCd()
         {
             spawningCdTime = Random.Range(spawningCdRange.x, spawningCdRange.y);
-            Debug.Log(spawningCdTime);
         }
     }
 }

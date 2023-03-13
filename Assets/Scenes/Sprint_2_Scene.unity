@@ -726,6 +726,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qtePrefabs:
   - {fileID: 1862073161183164932, guid: b323140efae3d9b4e9504f1321b4299f, type: 3}
+  - {fileID: 48793303971119496, guid: 2c06b8afea94864428604b8817669a97, type: 3}
+  - {fileID: 48793303971119496, guid: 2c06b8afea94864428604b8817669a97, type: 3}
   spawningCdRange: {x: 5, y: 5}
 --- !u!4 &567255177
 Transform:
@@ -1237,6 +1239,7 @@ MonoBehaviour:
   spawner:
     prefabs:
     - {fileID: 5595544873782067161, guid: 96e1172b857c25e4c82837fbb0690677, type: 3}
+    - {fileID: 6280061216681449979, guid: 3c85546fa23deec49bf880e3d8f4305b, type: 3}
     spawnCdRandomRange: {x: 15, y: 30}
     parent: {fileID: 1954554528}
 --- !u!4 &1954554528
@@ -1454,5 +1457,5 @@ MonoBehaviour:
   stats:
     baseAtk: 1
     atkMultipler: 1
-    baseSpeed: 1.5
+    baseSpeed: 2.1
     speedMultipler: 1

@@ -65,7 +65,8 @@ namespace Core
 
         public void ReceiveExp(float value = 1) => playerLeveling.ReceiveExp(value);
 
-        public void Heal(float value) => stats.Health += value;
+		public void HealShield(float value) => stats.Shield += value;
+		public void Heal(float value) => stats.Health += value;
 
 		public class PlayerLeveling
         {

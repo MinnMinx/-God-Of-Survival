@@ -15,7 +15,7 @@ namespace QTE
         public bool IsOver => _isOver;
 
 		[SerializeField]
-        private SpriteRenderer[] objects;
+        private ParticleSystem spikes;
 		[SerializeField]
 		private Collider2D collider;
         private Collider2D[] _cachePlayer = new Collider2D[1];
@@ -40,26 +40,25 @@ namespace QTE
         public void Activate() {
             indicator.enabled = false;
 			_isActivated = true;
-			// activate renderer
-			foreach (var spriteRenderer in objects)
-            {
-                spriteRenderer.enabled = true;
-            }
-        }
+            // activate renderer
+            spikes.Play();
+		}
 
         public void CleanUp()
         {
             _timer = null;
-        }
+			spikes.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+		}
 
         public void OnStart()
         {
             _timer = new QteTimer(indicatorDuration);
             _isOver = false;
             _isActivated = false;
+			spikes.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
-            // Randomize spawn position in view
-            int horizontal = Random.value >= 0.5f ? 0 : 1;
+			// Randomize spawn position in view
+			int horizontal = Random.value >= 0.5f ? 0 : 1;
             var viewPortPos = new Vector2()
             {
                 x = horizontal * Random.value,
@@ -76,17 +75,11 @@ namespace QTE
             {
                 indicator.SetPositions(new Vector3[]
                 {
-                    spawnPos - directionalVector * 8, endPos + directionalVector * 16,
+                    spawnPos - directionalVector * 16, endPos + directionalVector * 24,
                 });
             }
 
-            transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(endPos - spawnPos, Vector3.up));
             transform.position = spawnPos - directionalVector * 8;
-			// Disable spawn objects
-			foreach (var spriteRenderer in objects)
-            {
-                spriteRenderer.enabled = false;
-            }
         }
 
         public void OnUpdate(float deltaTime)
@@ -106,20 +99,17 @@ namespace QTE
                 transform.position += directionalVector * speed * deltaTime;
 
                 //detech collision
-                if (collider.OverlapCollider(new ContactFilter2D { useLayerMask = true, layerMask = 1<<6, useTriggers = true, }, _cachePlayer) > 0)
+                if (collider.enabled && collider.OverlapCollider(new ContactFilter2D { useLayerMask = true, layerMask = 1<<6, useTriggers = true, }, _cachePlayer) > 0)
                 {
-                    collider.enabled = false;
                     _cachePlayer[0].GetComponent<Core.PlayerController>().TakeDamage(attackDamage);
+                    collider.enabled = false;
 				}
 			}
             else
             {
-                // Despawn
-                foreach (var spriteRenderer in objects)
-                {
-                    spriteRenderer.enabled = false;
-                }
-                _isOver = true;
+				// Despawn
+				spikes.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+				_isOver = true;
             }
         }
 	}

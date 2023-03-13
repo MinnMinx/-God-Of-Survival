@@ -18,16 +18,16 @@ namespace Item
 
 		private void OnBecameInvisible()
 		{
-			countDownUntilDespawn -= Time.deltaTime;
-			if (countDownUntilDespawn <= 0)
-			{
-				OnDespawn();
-				Destroy(gameObject);
-			}
+			this.Invoke("_Destroy", countDownUntilDespawn);
 		}
 		private void OnBecameVisible()
 		{
-			countDownUntilDespawn = 10;
+			this.CancelInvoke("_Destroy");
+		}
+		private void _Destroy()
+		{
+			OnDespawn();
+			Destroy(gameObject);
 		}
 	}
 }
