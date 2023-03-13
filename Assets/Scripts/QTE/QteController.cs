@@ -9,9 +9,6 @@ namespace QTE {
         private GameObject[] qtePrefabs;
 
         [SerializeField]
-        private Transform playerTransform;
-
-        [SerializeField]
         private Vector2 spawningCdRange = Vector2.one * 10f;
         private float spawningCdTime = 0;
         private IQte currentQte;

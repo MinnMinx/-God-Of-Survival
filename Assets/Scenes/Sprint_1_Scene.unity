@@ -286,7 +286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qtePrefabs:
   - {fileID: 1862073161183164932, guid: b323140efae3d9b4e9504f1321b4299f, type: 3}
-  playerTransform: {fileID: 8154960875292420854}
   spawningCdRange: {x: 5, y: 5}
 --- !u!4 &567255177
 Transform:
@@ -357,7 +356,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -451,6 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickUpRadius: 1.5
+  pickUpFlySpeed: 10
   contextObjects:
     player: {fileID: 8154960875292420856}
   spawner:
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapMaterial: {fileID: 2100000, guid: 11c08ee4860684c4ca003e66c545fc84, type: 2}
-  uvScale: {x: 1, y: 1}
+  uvScale: {x: 1.2, y: 1.2}
 --- !u!1 &251626717399784530
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +651,7 @@ GameObject:
   - component: {fileID: 172790387}
   - component: {fileID: 172790399}
   - component: {fileID: 8154960875292420856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -17,6 +17,8 @@ namespace Core
         public float AttackMultipler => stats.atkMultipler;
         public bool IsDead => stats.Health <= 0;
         public int Level => playerLeveling.Level;
+        public float NormalizedHp => stats.Health / 100f;
+        public float NormalizedShield => stats.Shield / 100f;
         public float NormalizedExpProgress => playerLeveling.ExpProgress;
 
 		// Start is called before the first frame update
@@ -65,7 +67,7 @@ namespace Core
 
         public void Heal(float value) => stats.Health += value;
 
-        public class PlayerLeveling
+		public class PlayerLeveling
         {
             private int level;
             private float currentExp;
@@ -107,7 +109,6 @@ namespace Core
                 get => health;
                 set
                 {
-                    Debug.Log(value);
                     health = Mathf.Clamp(value, 0, 100);
                 }
             }

@@ -6,8 +6,11 @@ namespace Item {
     public class PickUpController : MonoBehaviour
     {
         private Collider2D[] pickableItems = new Collider2D[10]; // max 10 item per frame
+        private List<PickUp> pickingUpItems = new List<PickUp>(30);
         [SerializeField]
         private float pickUpRadius = 3f;
+		[SerializeField]
+		private float pickUpFlySpeed = 2f;
 
 		[SerializeField]
 		private PickUpContext contextObjects;
@@ -25,30 +28,46 @@ namespace Item {
 
 		private void Update()
 		{
+            float deltaTime = Time.deltaTime;
 			if (Physics2D.OverlapCircleNonAlloc(contextObjects.player.transform.position, pickUpRadius, pickableItems, itemLayerMask) > 0)
             {
                 foreach (var collider in pickableItems)
                 {
-                    if (collider == null)
-                        continue;
-
-					PickUp item = collider.GetComponent<PickUp>();
-                    if (item != null)
+                    PickUp item;
+					if (collider != null && (item = collider.GetComponent<PickUp>()) != null)
                     {
-						collider.enabled = false;
-						item.OnPickUp(contextObjects);
-                        item.OnDespawn();
-                        Destroy(item.gameObject);
-                    }
+                        collider.enabled = false;
+                        pickingUpItems.Add(item);
+					}
                 }
             }
-            spawner.Update(Time.deltaTime);
+            for (int i = 0; i < pickingUpItems.Count; i++)
+            {
+                var pickingItem = pickingUpItems[i];
+                pickingItem.transform.position = Vector3.MoveTowards(pickingItem.transform.position, contextObjects.player.transform.position, deltaTime * pickUpFlySpeed);
+                if (Vector3.Distance(pickingItem.transform.position, contextObjects.player.transform.position) <= 0.3f)
+                {
+                    // Pick up
+                    pickingItem.OnPickUp(contextObjects);
+                    pickingItem.OnDespawn();
+                    RemoveItemBySwap(i);
+                    i--;
+					Destroy(pickingItem.gameObject);
+                }
+            }
+            spawner.Update(deltaTime);
 		}
 
 		private void OnDrawGizmosSelected()
 		{
             if (contextObjects.player != null)
                 Gizmos.DrawSphere(contextObjects.player.transform.position, pickUpRadius);
+		}
+
+        void RemoveItemBySwap(int index)
+        {
+			pickingUpItems[index] = pickingUpItems[pickingUpItems.Count - 1];
+			pickingUpItems.RemoveAt(pickingUpItems.Count - 1);
 		}
 
 		[System.Serializable]
