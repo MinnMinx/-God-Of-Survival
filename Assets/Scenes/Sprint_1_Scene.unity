@@ -286,7 +286,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   qtePrefabs:
   - {fileID: 1862073161183164932, guid: b323140efae3d9b4e9504f1321b4299f, type: 3}
-  playerTransform: {fileID: 8154960875292420854}
   spawningCdRange: {x: 5, y: 5}
 --- !u!4 &567255177
 Transform:
@@ -357,7 +356,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -421,6 +420,59 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!1 &1954554526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1954554528}
+  - component: {fileID: 1954554527}
+  m_Layer: 0
+  m_Name: ItemController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1954554527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954554526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9139edc9585894742a7b128ff6da285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickUpRadius: 1.5
+  pickUpFlySpeed: 10
+  contextObjects:
+    player: {fileID: 8154960875292420856}
+  spawner:
+    prefabs:
+    - {fileID: 5595544873782067161, guid: 96e1172b857c25e4c82837fbb0690677, type: 3}
+    spawnCdRandomRange: {x: 15, y: 30}
+    parent: {fileID: 1954554528}
+--- !u!4 &1954554528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1954554526}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &251626717399784489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +486,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapMaterial: {fileID: 2100000, guid: 11c08ee4860684c4ca003e66c545fc84, type: 2}
-  uvScale: {x: 1, y: 1}
+  uvScale: {x: 1.2, y: 1.2}
 --- !u!1 &251626717399784530
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +651,7 @@ GameObject:
   - component: {fileID: 172790387}
   - component: {fileID: 172790399}
   - component: {fileID: 8154960875292420856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,8 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    health: 100
-    shield: 100
     baseAtk: 1
+    atkMultipler: 1
     baseSpeed: 1.5
     speedMultipler: 1

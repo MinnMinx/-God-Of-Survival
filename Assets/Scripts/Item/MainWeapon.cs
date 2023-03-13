@@ -3,18 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace Item
 {
-    public class MainWeapon : PickUp
-    {
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-    }
+	public class MainWeapon : PickUp
+	{
+		public override void OnPickUp(PickUpController.PickUpContext affectStats)
+		{
+			throw new System.NotImplementedException();
+		}
+	}
 }

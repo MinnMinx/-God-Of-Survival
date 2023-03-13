@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 namespace QTE
 {
@@ -15,10 +14,13 @@ namespace QTE
         private bool _isOver = false;
         public bool IsOver => _isOver;
 
-        [SerializeField]
+		[SerializeField]
         private SpriteRenderer[] objects;
+		[SerializeField]
+		private Collider2D collider;
+        private Collider2D[] _cachePlayer = new Collider2D[1];
 
-        [SerializeField]
+		[SerializeField]
         private float despawnAfterSecond = 10f;
 
         [SerializeField]
@@ -26,17 +28,20 @@ namespace QTE
 
         [SerializeField]
         private float speed = 10f;
+		[SerializeField]
+		private float attackDamage = 30f;
 
-        [SerializeField]
+		[SerializeField]
         private LineRenderer indicator;
         private Vector3 directionalVector = Vector3.zero;
 
         private bool _isActivated = false;
+
         public void Activate() {
             indicator.enabled = false;
-            _isActivated = true;
-            // activate renderer
-            foreach (var spriteRenderer in objects)
+			_isActivated = true;
+			// activate renderer
+			foreach (var spriteRenderer in objects)
             {
                 spriteRenderer.enabled = true;
             }
@@ -75,11 +80,12 @@ namespace QTE
                 });
             }
 
-            // Disable spawn objects
-            foreach (var spriteRenderer in objects)
+            transform.rotation = Quaternion.Euler(0, 0, Vector3.Angle(endPos - spawnPos, Vector3.up));
+            transform.position = spawnPos - directionalVector * 8;
+			// Disable spawn objects
+			foreach (var spriteRenderer in objects)
             {
                 spriteRenderer.enabled = false;
-                spriteRenderer.transform.position = spawnPos - directionalVector * 8 + spriteRenderer.transform.localPosition;
             }
         }
 
@@ -97,11 +103,15 @@ namespace QTE
             else if (_timer.TimeSinceStart < despawnAfterSecond + indicatorDuration)
             {
                 // Move object toward target position
-                foreach(var sprRenderer in objects)
+                transform.position += directionalVector * speed * deltaTime;
+
+                //detech collision
+                if (collider.OverlapCollider(new ContactFilter2D { useLayerMask = true, layerMask = 1<<6, useTriggers = true, }, _cachePlayer) > 0)
                 {
-                    sprRenderer.transform.position += directionalVector * speed * deltaTime;
-                }
-            }
+                    collider.enabled = false;
+                    _cachePlayer[0].GetComponent<Core.PlayerController>().TakeDamage(attackDamage);
+				}
+			}
             else
             {
                 // Despawn
@@ -112,5 +122,5 @@ namespace QTE
                 _isOver = true;
             }
         }
-    }
+	}
 }
