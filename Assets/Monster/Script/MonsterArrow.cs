@@ -1,21 +1,21 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Monster
 {
-    public class MonsterShield : Monster
+    public class MonsterArrow : Monster
     {
         private new void Start()
         {
             base.Start();
             Atk = 3;
-            Basehp = 6;
+            Basehp = 3;
             Hp = base.GetHp(Basehp);
-            Atkrange = 0;
+            Atkrange = 15;
             Speed = 1.25f;
-            Atkspeed = 1;
-            Cd = 1;           
+            Atkspeed = 1.25f;
+            Cd = 1.25f;
         }
     }
 }
