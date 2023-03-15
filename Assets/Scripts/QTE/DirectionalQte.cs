@@ -1,3 +1,4 @@
+using Core;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -58,28 +59,23 @@ namespace QTE
 			spikes.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
 
 			// Randomize spawn position in view
-			int horizontal = Random.value >= 0.5f ? 0 : 1;
-            var viewPortPos = new Vector2()
-            {
-                x = horizontal * Random.value,
-                y = (1 - horizontal) * Random.value
-            };
-            var spawnPos = Camera.main.ViewportToWorldPoint(viewPortPos);
-            var endPos = Camera.main.ViewportToWorldPoint(Vector2.one / 2f);
-            directionalVector = (endPos - spawnPos).normalized;
-            spawnPos.z = 0;
-            endPos.z = 0;
+            var spawnPos = Camera.main.RandomPointOnEdgeScreen();
+            var centerPos = Camera.main.CenterPosition();
+            float distanceBetweenPos = Vector3.Distance(spawnPos, centerPos);
+			directionalVector = (centerPos - spawnPos).normalized;
+			var endPos = centerPos - directionalVector * distanceBetweenPos;
 
             // Set the indicator
             if (indicator != null)
             {
                 indicator.SetPositions(new Vector3[]
                 {
-                    spawnPos - directionalVector * 16, endPos + directionalVector * 24,
+                    spawnPos,
+                    endPos + directionalVector * despawnAfterSecond * speed,
                 });
             }
 
-            transform.position = spawnPos - directionalVector * 8;
+            transform.position = spawnPos;
         }
 
         public void OnUpdate(float deltaTime)
