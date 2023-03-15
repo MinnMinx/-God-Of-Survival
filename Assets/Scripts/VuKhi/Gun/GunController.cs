@@ -26,25 +26,7 @@ namespace VuKhi
         {
 
         }
-
-
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            Debug.Log(12);
-        }
-
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (other.gameObject.tag == "Enemy")
-            {
-                Debug.Log("ouch");
-
-                // xử lý khi viên đạn chạm vào đối tượng Enemy
-                Destroy(other.gameObject); // hủy đối tượng Enemy
-                Destroy(gameObject); // hủy đối tượng viên đạn
-            }
-        }
+       
         // Update is called once per frame
         void Update()
         {

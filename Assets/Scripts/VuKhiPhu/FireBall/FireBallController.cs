@@ -4,32 +4,36 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 using VuKhi;
 using UnityEngine.UIElements;
+using Transform = UnityEngine.Transform;
 
 namespace VuKhiPhu
 {
     public class FireBallController : Base
     {
-        public GameObject targetObject;
+        public Transform player;
+        public float speed;
 
-        public float rotationSpeed = 5f;
-
-        // Start is called before the first frame update
-        
-
-        // Update is called once per frame
         void Update()
         {
-            transform.RotateAround(targetObject.transform.position, Vector3.back, rotationSpeed * Time.deltaTime);
-
+            transform.RotateAround(player.position, Vector3.forward, speed * Time.deltaTime);
         }
         // quả cầu lửa nào chạm vào kẻ địch và gây sát thương 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.gameObject.tag == "Enemy")
             {
-                //other.GetComponent<Enemy>().TakeDamage(ATKBase); // gây sát thương
-                Destroy(gameObject); // phá hủy quả cầu lửa
+                Debug.Log("ouch");
+
+               // Destroy(gameObject); 
+
+                var enemy = other.gameObject.GetComponent<Monster.Monster>();
+                if (enemy != null)
+                {
+                    enemy.takedamage(ATKBase);
+                }
+
             }
+            
         }
         //phương thức để sử dụng phép thuật của nhân vật, sử dụng một vòng lặp để sinh ra các quả cầu lửa.
         //void CastSpell()

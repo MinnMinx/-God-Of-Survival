@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &40005145 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+  m_PrefabInstance: {fileID: 4671932763467406555}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &150974294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1023,8 +1028,8 @@ MonoBehaviour:
   ATKBase: 3
   ATKSpeed: 300
   time: 0
-  targetObject: {fileID: 8154960875244142384, guid: 04292d5eab432a44397c4611a2e3568f, type: 3}
-  rotationSpeed: 5
+  player: {fileID: 8154960875292420854}
+  speed: 300
 --- !u!212 &1175577723
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1560,6 +1565,71 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251626717399784530}
   m_Mesh: {fileID: 0}
+--- !u!1001 &4671932763467406555
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8154960875292420854}
+    m_Modifications:
+    - target: {fileID: 4821207914988103276, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_Name
+      value: Circle (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.544
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.999976
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.282
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.324
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012290936621130620, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7be28fb66073c0d488b8ac28969b651c, type: 3}
 --- !u!212 &8154960875292420853
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1626,6 +1696,7 @@ Transform:
   m_Children:
   - {fileID: 1676234574}
   - {fileID: 1175577721}
+  - {fileID: 40005145}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1682,5 +1753,5 @@ MonoBehaviour:
   ATKBase: 3
   ATKSpeed: 5
   time: 0
-  targetObject: {fileID: 0}
-  rotationSpeed: 5
+  player: {fileID: 0}
+  speed: 0
