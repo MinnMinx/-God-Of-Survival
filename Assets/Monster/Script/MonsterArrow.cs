@@ -6,8 +6,11 @@ namespace Monster
 {
     public class MonsterArrow : Monster
     {
+        private GameObject arrow;
+
         private new void Start()
         {
+            arrow = GetComponent<GameObject>();
             base.Start();
             Atk = 3;
             Basehp = 3;
@@ -16,6 +19,10 @@ namespace Monster
             Speed = 1.25f;
             Atkspeed = 1.25f;
             Cd = 1.25f;
+        }
+        public override void Attack()
+        {
+            Debug.Log("Arrow Attack");
         }
     }
 }
