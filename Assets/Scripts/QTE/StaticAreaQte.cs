@@ -1,3 +1,4 @@
+using Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,7 @@ namespace QTE
 		public void Activate()
         {
             _isActivated = true;
-            if (Camera.main.ViewportToWorldPoint(Vector3.one / 2f).x <= originalX)
+            if (Camera.main.CenterPosition().x <= originalX)
             {
                 // flip
                 effect.GetComponent<ParticleSystemRenderer>().flip = Vector3.right;
@@ -56,7 +57,7 @@ namespace QTE
             _isActivated = false;
             _isOver = false;
             _isAttacked = false;
-			var position = Camera.main.ViewportToWorldPoint(Vector3.one / 2f);
+			var position = Camera.main.CenterPosition();
             originalX = position.x;
 			position.z = 0;
 			transform.position = position;
