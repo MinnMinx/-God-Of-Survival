@@ -101,16 +101,16 @@ namespace Core
 					_Rotate(angle);
 			}
 
-//#if UNITY_EDITOR
-//			UpdatePosition();
-//            if (Input.GetMouseButton(0) && Input.mousePosition.x >= Screen.width / 2f)
-//            {
-//				if (dirJoystick.Rotate(Input.mousePosition, TouchPhase.Began, out float angle))
-//					_Rotate(angle);
-//			}
-//#endif
+#if UNITY_EDITOR
+			UpdatePosition();
+			if (Input.GetMouseButton(0) && Input.mousePosition.x >= Screen.width / 2f)
+			{
+				if (dirJoystick.Rotate(Input.mousePosition, TouchPhase.Began, out float angle))
+					_Rotate(angle);
+			}
+#endif
 		}
-        void UpdatePosition()
+		void UpdatePosition()
         {
             float horizontal = Input.GetAxis("Horizontal");
             float vertical = Input.GetAxis("Vertical");
