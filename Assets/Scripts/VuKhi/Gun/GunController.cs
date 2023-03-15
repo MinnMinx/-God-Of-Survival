@@ -8,7 +8,9 @@ namespace VuKhi
         // Start is called before the first frame update
         
         public GameObject bulletPrefab;
-
+        public float fireRate = 0.5f; // tốc độ bắn đạn
+        public float bulletSpeed = 10f; // tốc độ của đạn
+        private float lastFireTime;
         public void Shoot()
         {
             //"bulletPrefab" là prefab cho viên đạn
@@ -46,10 +48,13 @@ namespace VuKhi
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Time.time - lastFireTime > fireRate)
             {
                 Shoot();
+                lastFireTime = Time.time;
             }
+
+            
         }
         
     }

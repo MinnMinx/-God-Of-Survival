@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -8991796664420631100}
   m_Layer: 0
   m_Name: Triangle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,9 +125,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  atk: 0
-  hp: 0
-  atkrange: 0
-  level: 0
-  atkspeed: 0
-  cd: 0

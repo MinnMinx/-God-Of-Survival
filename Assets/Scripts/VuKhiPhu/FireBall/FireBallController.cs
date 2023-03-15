@@ -9,29 +9,18 @@ namespace VuKhiPhu
 {
     public class FireBallController : Base
     {
-        public GameObject fireballprefab;
+        public GameObject targetObject;
 
-
+        public float rotationSpeed = 5f;
 
         // Start is called before the first frame update
-        void Start()
-        {
-            //Thiết lập vị trí và định hướng ban đầu cho quả cầu lửa
-            //fireball.transform.position = transform.position + (Quaternion.Euler(0, 0, angle) * Vector3.right) * 10f; // vị trí ban đầu của quả cầu lửa
-            //fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 90); // định hướng ban đầu của quả cầu lửa
-        }
+        
 
         // Update is called once per frame
         void Update()
         {
-            //Lặp lại việc tạo và thiết lập các quả cầu lửa với các góc khác nhau để tạo ra hiệu ứng quay quanh player
-            //for (int i = 0; i < numFireballs; i++)
-            //{
-            //    float angle = i * 360f / numFireballs; // góc giữa các quả cầu lửa
-            //    GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-            //    fireball.transform.position = transform.position + (Quaternion.Euler(0, 0, angle) * Vector3.right) * 10f;
-            //    fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 90);
-            //}
+            transform.RotateAround(targetObject.transform.position, Vector3.back, rotationSpeed * Time.deltaTime);
+
         }
         // quả cầu lửa nào chạm vào kẻ địch và gây sát thương 
         void OnTriggerEnter2D(Collider2D other)
