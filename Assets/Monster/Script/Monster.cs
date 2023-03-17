@@ -8,10 +8,15 @@ namespace Monster
 {
     public class Monster : MonoBehaviour
     {
-        Transform destination; // player's transfrom
+        private Transform destination; // player's transfrom
+        public Transform Des
+        {
+            get { return destination; }
+            set { destination = value; }
+        }
 
         [SerializeField]
-        private float speed;
+        public float speed;
         public float Speed
         {
             get { return speed; }
@@ -77,7 +82,7 @@ namespace Monster
 
         public void SetPlayer(PlayerCtrl player)
         {
-            destination = player.transform;
+            Des = player.transform;
             level = player.Level;
         }
 
@@ -96,6 +101,11 @@ namespace Monster
             }
 
             if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
+
+            if(hp <= 0)
+            {
+                this.Despawn();
+            }
         }
 
         public float GetHp(float basehp)
@@ -104,8 +114,8 @@ namespace Monster
             hp = basehp * a;
             return hp;
         }
-
-        public void Attack()
+        
+        public virtual void Attack()
         {
             Debug.Log("Attack");
             cd = 0;

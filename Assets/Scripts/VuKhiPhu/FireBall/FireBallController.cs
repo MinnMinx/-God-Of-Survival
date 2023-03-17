@@ -4,43 +4,36 @@ using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 using VuKhi;
 using UnityEngine.UIElements;
+using Transform = UnityEngine.Transform;
 
 namespace VuKhiPhu
 {
     public class FireBallController : Base
     {
-        public GameObject fireballprefab;
+        public Transform player;
+        public float speed;
 
-
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            //Thiết lập vị trí và định hướng ban đầu cho quả cầu lửa
-            //fireball.transform.position = transform.position + (Quaternion.Euler(0, 0, angle) * Vector3.right) * 10f; // vị trí ban đầu của quả cầu lửa
-            //fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 90); // định hướng ban đầu của quả cầu lửa
-        }
-
-        // Update is called once per frame
         void Update()
         {
-            //Lặp lại việc tạo và thiết lập các quả cầu lửa với các góc khác nhau để tạo ra hiệu ứng quay quanh player
-            //for (int i = 0; i < numFireballs; i++)
-            //{
-            //    float angle = i * 360f / numFireballs; // góc giữa các quả cầu lửa
-            //    GameObject fireball = Instantiate(fireballPrefab, transform.position, Quaternion.identity);
-            //    fireball.transform.position = transform.position + (Quaternion.Euler(0, 0, angle) * Vector3.right) * 10f;
-            //    fireball.transform.rotation = Quaternion.Euler(0, 0, angle + 90);
-            //}
+            transform.RotateAround(player.position, Vector3.forward, speed * Time.deltaTime);
         }
         // quả cầu lửa nào chạm vào kẻ địch và gây sát thương 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.CompareTag("Enemy"))
+            if (other.gameObject.tag == "Enemy")
             {
-                //other.GetComponent<Enemy>().TakeDamage(ATKBase); // gây sát thương
-                Destroy(gameObject); // phá hủy quả cầu lửa
+                Debug.Log("ouch");
+
+               // Destroy(gameObject); 
+
+                var enemy = other.gameObject.GetComponent<Monster.Monster>();
+                if (enemy != null)
+                {
+                    enemy.takedamage(ATKBase);
+                }
+
             }
+            
         }
         //phương thức để sử dụng phép thuật của nhân vật, sử dụng một vòng lặp để sinh ra các quả cầu lửa.
         //void CastSpell()

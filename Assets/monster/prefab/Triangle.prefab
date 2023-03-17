@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2472380861746782344}
   - component: {fileID: 2472380861746782345}
   - component: {fileID: -5917219176091239940}
-  - component: {fileID: -8991796664420631100}
+  - component: {fileID: 2636162137540516315}
   m_Layer: 0
   m_Name: Triangle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &-8991796664420631100
+--- !u!114 &2636162137540516315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,13 +121,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2472380861746782351}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be844d1beb8c6634aae7d2152eb3d94f, type: 3}
+  m_Script: {fileID: 11500000, guid: 999839ae813ebd841aac18ccc18b57f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 5
+  bullet: {fileID: 4012511363123358763, guid: eb7a5238b9c029a499c38d33eda9a55f, type: 3}
+  bulletSp: 10
   speed: 1
-  atk: 0
-  hp: 0
-  atkrange: 0
-  level: 0
-  atkspeed: 0
-  cd: 0

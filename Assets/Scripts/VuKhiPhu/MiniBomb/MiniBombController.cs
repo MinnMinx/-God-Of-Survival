@@ -14,16 +14,31 @@ namespace VuKhiPhu
         int throwTime = 1;
         private int enemyLayer;
 
-        // Start is called before the first frame update
+        public float explosionForce = 1000f;
+
         void Start()
         {
+            // Lấy danh sách các đối tượng gần quả bom
+            Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
-        }
+            // Áp dụng lực đẩy và gây sát thương đến các đối tượng gần quả bom
+            foreach (Collider col in colliders)
+            {
+                Rigidbody rb = col.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                }
 
-        // Update is called once per frame
-        void Update()
-        {
+                Monster.Monster enemy = col.GetComponent<Monster.Monster>();
+                if (enemy != null)
+                {
+                    enemy.takedamage(50);
+                }
+            }
 
+            // Phá hủy quả bom sau khi đã phát nổ
+            Destroy(gameObject, 2f);
         }
         //Hàm để tạo ra quả bom
         void SpawnBomb(Vector3 throwPosition)

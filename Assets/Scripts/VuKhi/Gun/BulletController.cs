@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,13 @@ public class BulletController : MonoBehaviour
             Debug.Log("ouch");
 
             Destroy(gameObject); // hủy đối tượng viên đạn
+
+            var enemy = other.gameObject.GetComponent<Monster.Monster>();
+            if(enemy != null)
+            {
+                enemy.takedamage(1);
+            }
+
         }
     }
 }
