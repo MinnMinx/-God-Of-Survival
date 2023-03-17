@@ -21,8 +21,18 @@ namespace Monster
             Hp = base.GetHp(Basehp);
             Atkrange = 20;
             Speed = 1;
-            Atkspeed = 3f;
-            Cd = 1.5f;
+            Atkspeed = 1/0.35f;
+            Cd = Atkspeed;
+
+            if (Tinhanh)
+            {
+                Atk = Atk * 1.5f;
+                Hp = Hp * 1.3f;
+                Atkspeed = 1/0.7f;
+                Cd = Atkspeed;
+                gameObject.transform.localScale = new Vector3(2, 2, 2);
+                //Debug.Log("tinh anh spawn");
+            }
         }
 
         public override void Attack()
@@ -34,7 +44,7 @@ namespace Monster
             Vector2 direction = (target - (Vector2)transform.position).normalized;
             rb.AddForce(direction * bulletSp, ForceMode2D.Impulse);
             base.Cd = 0;
-            Debug.Log("Gun Attack");
+            //Debug.Log("Gun Attack");
         }
     }
 }

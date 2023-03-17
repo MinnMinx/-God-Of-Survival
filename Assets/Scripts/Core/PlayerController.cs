@@ -26,12 +26,13 @@ namespace Core
         {
             playerLeveling = new PlayerLeveling(this.OnLevelUp);
             spr = GetComponent<SpriteRenderer>();
-            OnLevelUp(0);
+            OnLevelUp(1);
 		}
 
         private void OnLevelUp (int level)
         {
             stats.baseAtk = 0.125f * level;
+            Debug.Log("level is" + level);
         }
 
         public Vector2 Move(float deltaX, float deltaY)
@@ -81,7 +82,7 @@ namespace Core
 
             public PlayerLeveling(Action<int> OnLevelUp)
             {
-                level = 0;
+                level = 1;
                 currentExp = 0;
                 this.OnLevelUp = OnLevelUp;
 			}
@@ -89,6 +90,7 @@ namespace Core
 
             public void ReceiveExp(float value)
             {
+                Debug.Log("tang xp" + value);
                 currentExp += value;
                 if (currentExp > expUntilLevelUp)
                 {
