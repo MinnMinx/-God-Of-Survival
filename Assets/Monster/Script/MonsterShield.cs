@@ -9,13 +9,13 @@ namespace Monster
         private new void Start()
         {
             base.Start();
-            Atk = 4;
-            Basehp = 4;
+            Atk = 3;
+            Basehp = 6;
             Hp = base.GetHp(Basehp);
             Atkrange = 0;
-            Speed = 1;
-            Atkspeed = 2;
-            Cd = 2;           
+            Speed = 1.25f;
+            Atkspeed = 1;
+            Cd = 1;           
         }
     }
 }

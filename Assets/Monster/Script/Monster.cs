@@ -8,7 +8,12 @@ namespace Monster
 {
     public class Monster : MonoBehaviour
     {
-        Transform destination; // player's transfrom
+        private Transform destination; // player's transfrom
+        public Transform Des
+        {
+            get { return destination; }
+            set { destination = value; }
+        }
 
         [SerializeField]
         public float speed;
@@ -77,7 +82,7 @@ namespace Monster
 
         public void SetPlayer(PlayerCtrl player)
         {
-            destination = player.transform;
+            Des = player.transform;
             level = player.Level;
         }
 
@@ -109,8 +114,8 @@ namespace Monster
             hp = basehp * a;
             return hp;
         }
-
-        public void Attack()
+        
+        public virtual void Attack()
         {
             Debug.Log("Attack");
             cd = 0;
