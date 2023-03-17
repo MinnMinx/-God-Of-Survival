@@ -31,11 +31,8 @@ namespace VuKhi
 				if (monster != null)
 				{
 					monster.takedamage(_parent.ATKBase);
-					if (monster != null && monster.Hp <= 0)
-					{
-						Debug.Log("WTF " + monster.gameObject.name);
-						Destroy(monster.gameObject);
-					}
+					_parent.Lv3Behavior(monster);
+					_parent.Lv5Behavior();
 				}
 			}
 		}

@@ -92,17 +92,19 @@ namespace Core
 					dirJoystick.Rotate(dirTouch.position, dirTouch.phase, out float angle))
 				{
 					_Rotate(angle);
-					PlayerAngle = angle;
+					player.PlayerAngle = angle;
 				}
 			}
 
 #if UNITY_EDITOR
 			UpdatePosition();
-			if (Input.GetMouseButton(0) && Input.mousePosition.x >= Screen.width / 2f)
+			if (Input.mousePresent && Input.mousePosition.x >= 0 && Input.mousePosition.x <= ScreenUtility.ScreenSizePx.x
+									&& Input.mousePosition.y >= 0 && Input.mousePosition.y <= ScreenUtility.ScreenSizePx.y)
 			{
-				if (dirJoystick.Rotate(Input.mousePosition, TouchPhase.Began, out float angle_))
+				var direction = new Vector2(Input.mousePosition.x, Input.mousePosition.y) - ScreenUtility.ScreenSizePx / 2f;
+				if (dirJoystick.Rotate(direction.normalized + dirJoystick.center, TouchPhase.Began, out float angle_))
 					_Rotate(angle_);
-				PlayerAngle = angle_;
+				player.PlayerAngle = angle_;
 			}
 #endif
 		}
