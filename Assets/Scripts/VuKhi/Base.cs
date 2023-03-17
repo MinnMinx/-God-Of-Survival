@@ -5,8 +5,8 @@ namespace VuKhi
 {
     public class Base : MonoBehaviour
     {
-        public int ATKBase = 3;
-        public int ATKSpeed = 1;
+        public float ATKBase = 3;
+        public float ATKSpeed = 1;
         public float time = 0;
         // Start is called before the first frame update
         void Start()

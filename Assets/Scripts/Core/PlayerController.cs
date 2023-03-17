@@ -90,7 +90,7 @@ namespace Core
             public void ReceiveExp(float value)
             {
                 currentExp += value;
-                if (currentExp > expUntilLevelUp)
+                while (currentExp > expUntilLevelUp)
                 {
                     // Level up
                     float extraExp = currentExp -= expUntilLevelUp;
