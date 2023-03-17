@@ -8,6 +8,8 @@ namespace Monster
 {
     public class Monster : MonoBehaviour
     {
+        private Core.PlayerController player;
+
         private Transform destination; // player's transfrom
         public Transform Des
         {
@@ -74,14 +76,23 @@ namespace Monster
         float screenTop;
         float screenBottom;
 
+        private bool tinhanh;
+        public bool Tinhanh
+        {
+            get { return tinhanh; }
+            set { tinhanh = value; }
+        }
+
 
         public void Start()
         {
+            tinhanhcheck();
             saveScreenSize();
         }
 
         public void SetPlayer(PlayerCtrl player)
         {
+            this.player = player;
             Des = player.transform;
             level = player.Level;
         }
@@ -102,7 +113,7 @@ namespace Monster
 
             if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
 
-            if(hp <= 0)
+            if (hp <= 0)
             {
                 this.Despawn();
             }
@@ -128,6 +139,9 @@ namespace Monster
 
         void Despawn()
         {
+            int xp = tinhanh == true ? 2 : 1;
+            player.ReceiveExp(xp);
+            Debug.Log("???");
             Destroy(this.gameObject);
         }
 
@@ -144,6 +158,14 @@ namespace Monster
             screenRight = upperRightCornerWorld.x;
             screenTop = upperRightCornerWorld.y;
             screenBottom = lowerLeftCornerWorld.y;
+        }
+
+        private void tinhanhcheck()
+        {
+            System.Random rnd = new System.Random();
+            int check = rnd.Next(100);
+            if (check <= 50) tinhanh = true;
+            else tinhanh = false;
         }
     }
 }

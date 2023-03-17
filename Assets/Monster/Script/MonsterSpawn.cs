@@ -14,26 +14,29 @@ namespace Monster
         [SerializeField]
         List<GameObject> monsters;
 
-        Timer timer;
-
         float screenLeft;
         float screenRight;
         float screenTop;
         float screenBottom;
 
+        private float spawnrate;
+        private int level;
+        private float heso = 0.5f;
+        private float time = 0;
+
         // Start is called before the first frame update
         void Start()
         {
-            timer = gameObject.AddComponent<Timer>();
-            timer.duration = 2f;
-            timer.run();
         }
 
         // Update is called once per frame
         void Update()
         {
+            time += Time.deltaTime;
             saveScreenSize();
-            if (timer.finished)
+            SetSpwanrate();
+            //Debug.Log("" + spawnrate);
+            if (time >= spawnrate)
             {
                 System.Random rnd = new System.Random();
                 List<float> x = new List<float>();
@@ -46,7 +49,7 @@ namespace Monster
 
                 Vector3 pos = new Vector3(x[rnd.Next(x.Count)], y[rnd.Next(y.Count)], 0);
                 spawn(pos);
-                timer.run();
+                time = 0;
             }
         }
 
@@ -58,6 +61,14 @@ namespace Monster
             GameObject monster = Instantiate(monsters[rnd.Next(monsters.Count)]);
             monster.transform.position = position;
             monster.GetComponent<Monster>().SetPlayer(player);
+        }
+
+
+        public void SetSpwanrate()
+        {
+            level = player.Level;
+            float a = (float)Math.Pow(level, heso);
+            spawnrate = 1*a;
         }
 
         private void saveScreenSize()
