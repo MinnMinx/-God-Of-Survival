@@ -20,6 +20,7 @@ namespace Core
         public float NormalizedHp => stats.Health / 100f;
         public float NormalizedShield => stats.Shield / 100f;
         public float NormalizedExpProgress => playerLeveling.ExpProgress;
+        public float PlayerAngle { get; internal set; }
 
 		// Start is called before the first frame update
 		void Start()
@@ -69,6 +70,12 @@ namespace Core
 		public void HealShield(float value) => stats.Shield += value;
 		public void Heal(float value) => stats.Health += value;
 
+        /// <summary>
+        /// Heal part of the missing health
+        /// </summary>
+        /// <param name="percentage">0.3 if it's 30%</param>
+		public void HealMissingHp(float percentage) => stats.Health += (100 - stats.Health) * percentage;
+
 		public class PlayerLeveling
         {
             private int level;
@@ -92,7 +99,7 @@ namespace Core
             {
                 Debug.Log("tang xp" + value);
                 currentExp += value;
-                if (currentExp > expUntilLevelUp)
+                while (currentExp > expUntilLevelUp)
                 {
                     // Level up
                     float extraExp = currentExp -= expUntilLevelUp;

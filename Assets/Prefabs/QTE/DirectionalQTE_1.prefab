@@ -202,8 +202,8 @@ MonoBehaviour:
   spikes: {fileID: 3056977409549885251}
   collider: {fileID: 4518935858827471494}
   despawnAfterSecond: 3
-  indicatorDuration: 2
-  speed: 27
+  indicatorDuration: 1.5
+  speed: 30
   attackDamage: 30
   indicator: {fileID: 881744158825653552}
 --- !u!58 &4518935858827471494

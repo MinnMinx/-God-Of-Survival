@@ -55,6 +55,8 @@ namespace Core.UI
 			return true;
 		}
 
+		public Vector2 center => joystickRange.center;
+
 		private void SetFocus(bool focus = true)
 		{
 			canvasGroup.alpha = focus ? 1f : 0.2f;
