@@ -16,7 +16,7 @@ namespace Monster
         }
 
         [SerializeField]
-        private float speed;
+        public float speed;
         public float Speed
         {
             get { return speed; }
@@ -101,6 +101,11 @@ namespace Monster
             }
 
             if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
+
+            if(hp <= 0)
+            {
+                this.Despawn();
+            }
         }
 
         public float GetHp(float basehp)

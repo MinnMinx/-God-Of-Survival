@@ -8,7 +8,9 @@ namespace VuKhi
         // Start is called before the first frame update
         
         public GameObject bulletPrefab;
-
+        public float fireRate = 0.5f; // tốc độ bắn đạn
+        public float bulletSpeed = 10f; // tốc độ của đạn
+        private float lastFireTime;
         public void Shoot()
         {
             //"bulletPrefab" là prefab cho viên đạn
@@ -24,32 +26,17 @@ namespace VuKhi
         {
 
         }
-
-
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            Debug.Log(12);
-        }
-
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (other.gameObject.tag == "Enemy")
-            {
-                Debug.Log("ouch");
-
-                // xử lý khi viên đạn chạm vào đối tượng Enemy
-                Destroy(other.gameObject); // hủy đối tượng Enemy
-                Destroy(gameObject); // hủy đối tượng viên đạn
-            }
-        }
+       
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Time.time - lastFireTime > fireRate)
             {
                 Shoot();
+                lastFireTime = Time.time;
             }
+
+            
         }
         
     }
