@@ -570,6 +570,7 @@ MonoBehaviour:
   monsters:
   - {fileID: 2472380861746782351, guid: 332de998fac64974aae5ccf4a114dbf3, type: 3}
   - {fileID: 435741631719339742, guid: 113f7ae4d87ac0f449ba8593e4324020, type: 3}
+  - {fileID: 1026140610316903321, guid: 1f8f3804e37284c4fbb34cdee50b2ab7, type: 3}
 --- !u!1 &382806675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2366,7 +2367,7 @@ MonoBehaviour:
   stats:
     baseAtk: 1
     atkMultipler: 1
-    baseSpeed: 2.1
+    baseSpeed: 5
     speedMultipler: 1
 --- !u!114 &8154960875292420857
 MonoBehaviour:

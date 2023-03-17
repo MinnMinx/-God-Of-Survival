@@ -71,7 +71,7 @@ namespace Monster
         private void OnTriggerEnter2D(Collider2D collision)
         {
             takedamage(collision.gameObject.GetComponent<Monster>().Atk);
-            Debug.Log("HP: " + hp);
+            //Debug.Log("HP: " + hp);
         }
 
         void takedamage(float dame)
