@@ -126,7 +126,11 @@ namespace Core
 					}
 				}
 
-				if (!hasMoveTouch) moveTouchId = -1;
+				if (!hasMoveTouch)
+				{
+					player.StopRunning();
+					moveTouchId = -1;
+				}
 				if (!hasDirTouch) dirTouchId = -1;
 			}
 		}

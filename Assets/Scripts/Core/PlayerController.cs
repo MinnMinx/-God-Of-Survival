@@ -11,9 +11,12 @@ namespace Core
         private PlayerStat stats;
         private PlayerLeveling playerLeveling;
 
+        [SerializeField]
         private SpriteRenderer spr;
+		[SerializeField]
+		private Animator anim;
 
-        public float BaseAttack => stats.baseAtk * stats.atkMultipler;
+		public float BaseAttack => stats.baseAtk * stats.atkMultipler;
         public float AttackMultipler => stats.atkMultipler;
         public bool IsDead => stats.Health <= 0;
         public int Level => playerLeveling.Level;
@@ -26,18 +29,22 @@ namespace Core
 		void Start()
         {
             playerLeveling = new PlayerLeveling(this.OnLevelUp);
-            spr = GetComponent<SpriteRenderer>();
+            if (spr == null)
+                spr = GetComponent<SpriteRenderer>();
             OnLevelUp(1);
 		}
 
         private void OnLevelUp (int level)
         {
             stats.baseAtk = 0.125f * level;
-            Debug.Log("level is" + level);
         }
 
         public Vector2 Move(float deltaX, float deltaY)
         {
+            if (anim != null && !anim.GetBool("running"))
+            {
+                anim.SetBool("running", true);
+            }
             var position = transform.position;
             position.x += deltaX * stats.baseSpeed * stats.speedMultipler;
             position.y += deltaY * stats.baseSpeed * stats.speedMultipler;
@@ -45,10 +52,23 @@ namespace Core
             return position;
         }
 
+        public void StopRunning() => _TurnOffBool("running");
+
+		void _TurnOffBool (string name)
+        {
+			if (anim != null)
+                anim.SetBool(name, false);
+		}
+        void _StopHit() => _TurnOffBool("hit");
+
         public void FlipSprite(bool right = true) => spr.flipX = right;
 
 		public void TakeDamage(float value)
         {
+            if (anim != null)
+            {
+                anim.SetBool("hit", true);
+            }
             if (stats.Shield > value)
             {
                 stats.Shield -= value;
@@ -63,6 +83,7 @@ namespace Core
             {
                 stats.Health -= value;
             }
+            Invoke("_StopHit", 0.02f);
         }
 
         public void ReceiveExp(float value = 1) => playerLeveling.ReceiveExp(value);

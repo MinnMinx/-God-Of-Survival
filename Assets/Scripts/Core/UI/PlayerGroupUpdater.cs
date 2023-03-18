@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,6 +13,10 @@ namespace Core.UI
 		[SerializeField]
 		private Slider shieldSlider;
 		[SerializeField]
+		private Slider xpSlider;
+		[SerializeField]
+		private TextMeshProUGUI lvTxt;
+		[SerializeField]
 		private Core.PlayerController player;
 
 		// Update is called once per frame
@@ -21,7 +26,11 @@ namespace Core.UI
             {
                 hpSlider.value = player.NormalizedHp;
                 shieldSlider.value = player.NormalizedShield;
-            }
+				if (xpSlider != null)
+					xpSlider.value = player.NormalizedExpProgress;
+				if (lvTxt != null)
+					lvTxt.SetText("{0}", player.Level);
+			}
         }
     }
 }
