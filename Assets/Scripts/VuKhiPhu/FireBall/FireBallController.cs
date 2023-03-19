@@ -20,19 +20,16 @@ namespace VuKhiPhu
         // quả cầu lửa nào chạm vào kẻ địch và gây sát thương 
         void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.tag == "Enemy")
-            {
-                Debug.Log("ouch");
-
                // Destroy(gameObject); 
 
                 var enemy = other.gameObject.GetComponent<Monster.Monster>();
                 if (enemy != null)
                 {
-                    enemy.takedamage(ATKBase);
+				Debug.Log("ouch fire");
+				enemy.takedamage(ATKBase);
                 }
 
-            }
+            
             
         }
         //phương thức để sử dụng phép thuật của nhân vật, sử dụng một vòng lặp để sinh ra các quả cầu lửa.
