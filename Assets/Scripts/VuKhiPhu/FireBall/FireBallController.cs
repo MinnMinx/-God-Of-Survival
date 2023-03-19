@@ -5,33 +5,74 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 using VuKhi;
 using UnityEngine.UIElements;
 using Transform = UnityEngine.Transform;
+using System;
+using System.Threading;
+using Item;
+using System.Linq;
 
 namespace VuKhiPhu
 {
     public class FireBallController : Base
     {
-        public Transform player;
+        private Transform player;
         public float speed;
+		private bool active = false;
+		private static int count = 0;
 
-        void Update()
+		void Start()
+		{
+          
+
+		}
+		void Update()
         {
-            transform.RotateAround(player.position, Vector3.forward, speed * Time.deltaTime);
-        }
+			player = GameObject.FindWithTag("Player").transform;
+			if (active == true )
+            {
+				transform.RotateAround(player.position, Vector3.forward, speed * Time.deltaTime);
+                
+				Debug.Log(count);
+			}
+   //         if(count == 6)
+   //         {
+   //             var renderItem = GameObject.Find("ItemController").GetComponent<PickUpController>().spawner.prefabs;
+   //             if (renderItem != null)
+   //             {
+
+			//	}
+                   
+			//}
+			
+
+
+		}
         // quả cầu lửa nào chạm vào kẻ địch và gây sát thương 
         void OnTriggerEnter2D(Collider2D other)
         {
-               // Destroy(gameObject); 
+			Debug.Log("trigger fire");
+			// Destroy(gameObject); 
 
-                var enemy = other.gameObject.GetComponent<Monster.Monster>();
+			var enemy = other.gameObject.GetComponent<Monster.Monster>();
                 if (enemy != null)
                 {
 				Debug.Log("ouch fire");
 				enemy.takedamage(ATKBase);
                 }
 
-            
-            
-        }
+			var player = other.gameObject.GetComponent<Core.PlayerController>();
+			if (player != null && count < 6)
+			{
+                active = true;
+				count++;
+				Debug.Log("add fire");
+
+               
+				
+			}
+
+
+
+		}
         //phương thức để sử dụng phép thuật của nhân vật, sử dụng một vòng lặp để sinh ra các quả cầu lửa.
         //void CastSpell()
         //{
