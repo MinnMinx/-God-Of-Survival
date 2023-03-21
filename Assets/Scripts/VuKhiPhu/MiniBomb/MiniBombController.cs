@@ -1,6 +1,7 @@
 ﻿using Monster;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using VuKhi;
 
@@ -8,69 +9,25 @@ namespace VuKhiPhu
 {
     public class MiniBombController : Base
     {
-        GameObject bombPrefab;
-        GameObject player;
-        float explosionRadius = 5f;
-        int throwTime = 1;
-        private int enemyLayer;
+        public GameObject bombPrefab;
+        public GameObject player;
+        public float spawnTime = 5f;
 
-        public float explosionForce = 1000f;
+        private float timer = 0f;
 
-        void Start()
+        public float explosionRadius = 5f; // Bán kính của vùng nổ
+        public float explosionForce = 1000f; // Lực nổ
+        public float explosionTime = 3f; // Thời gian phát nổ
+        public GameObject explosionEffect; // Hiệu ứng nổ
+
+        private bool isExploded = false; // Kiểm tra xem quả bom đã phát nổ chưa
+
+        private void Start()
         {
-            // Lấy danh sách các đối tượng gần quả bom
-            Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
 
-            // Áp dụng lực đẩy và gây sát thương đến các đối tượng gần quả bom
-            foreach (Collider col in colliders)
-            {
-                Rigidbody rb = col.GetComponent<Rigidbody>();
-                if (rb != null)
-                {
-                    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-                }
-
-                Monster.Monster enemy = col.GetComponent<Monster.Monster>();
-                if (enemy != null)
-                {
-                    enemy.takedamage(50);
-                }
-            }
-
-            // Phá hủy quả bom sau khi đã phát nổ
-            Destroy(gameObject, 2f);
-        }
-        //Hàm để tạo ra quả bom
-        void SpawnBomb(Vector3 throwPosition)
-        {
-            GameObject bomb = Instantiate(bombPrefab, player.transform.position, Quaternion.identity);
-            //bomb.GetComponent<MiniBomb>().Throw(throwPosition, throwTime, explosionRadius, ATKBase);
-        }
-        // kiểm tra xem có kẻ địch nào trong phạm vi bán kính của quả bom
-        bool CheckEnemyInRange(Vector3 center, float radius, out GameObject enemy)
-        {
-            Collider[] colliders = Physics.OverlapSphere(center, radius, enemyLayer);
-            if (colliders.Length > 0)
-            {
-                // Chọn một kẻ địch ngẫu nhiên trong phạm vi bán kính
-                enemy = colliders[Random.Range(0, colliders.Length)].gameObject;
-                return true;
-            }
-            else
-            {
-                enemy = null;
-                return false;
-            }
-        }
-        //tạo ra một vị trí ngẫu nhiên trong phạm vi nếu không có kẻ địch nào trong phạm vi bán kính của quả bom:
-        Vector3 GetRandomPosition(Vector3 center, float radius)
-        {
-            float angle = Random.Range(0f, Mathf.PI * 2f);
-            float distance = Random.Range(0f, radius);
-            Vector3 position = center + new Vector3(Mathf.Cos(angle) * distance, 0f, Mathf.Sin(angle) * distance);
-            return position;
-        }
-        //sinh ra vị trí ném bom:
+        ////sinh ra vị trí ném bom:
         Vector3 GetThrowPosition(Vector3 playerPosition, GameObject enemy, float radius)
         {
             Vector3 throwPosition;
@@ -88,14 +45,12 @@ namespace VuKhiPhu
 
             return throwPosition;
         }
-
-        //Hàm để tính khoảng cách giữa player và địch
+        ////Hàm để tính khoảng cách giữa player và địch
         float Distance(Vector3 playerPosition, Vector3 enemyPosition)
         {
             return Vector3.Distance(playerPosition, enemyPosition);
         }
-
-        //tìm địch gần nhất trong bán kính 30f:
+        ////tìm địch gần nhất trong bán kính 30f:
         GameObject FindClosestEnemy(Vector3 playerPosition, float radius)
         {
             GameObject closestEnemy = null;
@@ -113,15 +68,58 @@ namespace VuKhiPhu
 
             return closestEnemy;
         }
-        //In player:     khi player thực hiện hành động ném bom:
-        //void ThrowBomb()
-        //{
-        //    Vector3 playerPosition = player.transform.position;
-        //    GameObject enemy = FindClosestEnemy(playerPosition, bombRange);
 
-        //    Vector3 throwPosition = GetThrowPosition(playerPosition, enemy, bombRange);
-        //    SpawnBomb(throwPosition);
-        //}
+        void Update()
+        {
+            timer += Time.deltaTime;
+
+            if (timer >= spawnTime)
+            {
+                SpawnBomb();
+                timer = 0f;
+            }
+        }
+        //Tạo bom
+        void SpawnBomb()
+        {
+            Instantiate(bombPrefab, GetThrowPosition(player.transform.position, FindClosestEnemy(player.transform.position, 10f), 10f), Quaternion.identity);
+        }
+
+
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (!isExploded && collision.gameObject.CompareTag("Enemy"))
+            {
+                isExploded = true;
+                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+                foreach (Collider2D nearbyObject in colliders)
+                {
+                    //Rigidbody2D rb = nearbyObject.GetComponent<Rigidbody2D>();
+                    //if (rb != null)
+                    //{
+                    //    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
+                    //}
+
+                    Monster.Monster enemy = nearbyObject.GetComponent<Monster.Monster>();
+                    if (enemy != null)
+                    {
+                        Debug.Log("minibom");
+                        enemy.takedamage(10); // Gây sát thương cho quái
+                    }
+                }
+
+                // Tạo hiệu ứng nổ
+                Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+                // Hủy quả bom
+                Destroy(gameObject, explosionTime);
+            }
+
+
+
+        }
     }
 
 }

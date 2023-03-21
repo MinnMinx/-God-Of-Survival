@@ -141,7 +141,7 @@ namespace Monster
         {
             int xp = tinhanh == true ? 2 : 1;
             player.ReceiveExp(xp);
-            Debug.Log("???");
+            //Debug.Log("???");
             Destroy(this.gameObject);
         }
 

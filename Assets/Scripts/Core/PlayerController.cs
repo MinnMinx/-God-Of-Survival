@@ -118,7 +118,7 @@ namespace Core
 
             public void ReceiveExp(float value)
             {
-                Debug.Log("tang xp" + value);
+              //  Debug.Log("tang xp" + value);
                 currentExp += value;
                 while (currentExp > expUntilLevelUp)
                 {
