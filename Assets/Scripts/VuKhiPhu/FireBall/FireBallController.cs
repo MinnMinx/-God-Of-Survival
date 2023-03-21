@@ -9,6 +9,7 @@ using System;
 using System.Threading;
 using Item;
 using System.Linq;
+using static UnityEngine.GraphicsBuffer;
 
 namespace VuKhiPhu
 {
@@ -16,63 +17,73 @@ namespace VuKhiPhu
     {
         private Transform player;
         public float speed;
-		private bool active = false;
-		private static int count = 0;
+        private bool active = false;
+        private static int count = 0;
+        public float orbitDistance = 3.0f;
 
-		void Start()
-		{
-          
-
-		}
-		void Update()
+        void Start()
         {
-			player = GameObject.FindWithTag("Player").transform;
-			if (active == true )
+            player = GameObject.FindWithTag("Player").transform;
+        }
+        void Update()
+        {
+            Orbit();
+            //         if(count == 6)
+            //         {
+            //             var renderItem = GameObject.Find("ItemController").GetComponent<PickUpController>().spawner.prefabs;
+            //             if (renderItem != null)
+            //             {
+
+            //	}
+
+            //}
+
+        }
+
+        void LateUpdate()
+        {
+
+            Orbit();
+
+        }
+
+        void Orbit()
+        {
+            if (active == true)
             {
-				transform.RotateAround(player.position, Vector3.forward, speed * Time.deltaTime);
-                
-				Debug.Log(count);
-			}
-   //         if(count == 6)
-   //         {
-   //             var renderItem = GameObject.Find("ItemController").GetComponent<PickUpController>().spawner.prefabs;
-   //             if (renderItem != null)
-   //             {
+                transform.position = player.position + (transform.position - player.position).normalized * orbitDistance;
+                transform.RotateAround(player.position, Vector3.forward, speed * Time.deltaTime);
 
-			//	}
-                   
-			//}
-			
+                Debug.Log(count);
+            }
+        }
 
-
-		}
         // quả cầu lửa nào chạm vào kẻ địch và gây sát thương 
         void OnTriggerEnter2D(Collider2D other)
         {
-			Debug.Log("trigger fire");
-			// Destroy(gameObject); 
+            Debug.Log("trigger fire");
+            // Destroy(gameObject); 
 
-			var enemy = other.gameObject.GetComponent<Monster.Monster>();
-                if (enemy != null)
-                {
-				Debug.Log("ouch fire");
-				enemy.takedamage(ATKBase);
-                }
+            var enemy = other.gameObject.GetComponent<Monster.Monster>();
+            if (enemy != null)
+            {
+                Debug.Log("ouch fire");
+                enemy.takedamage(ATKBase);
+            }
 
-			var player = other.gameObject.GetComponent<Core.PlayerController>();
-			if (player != null && count < 6)
-			{
+            var player = other.gameObject.GetComponent<Core.PlayerController>();
+            if (player != null && count < 6)
+            {
                 active = true;
-				count++;
-				Debug.Log("add fire");
+                gameObject.AddComponent<Rigidbody2D>();
+                count++;
+                Debug.Log("add fire");
 
-               
-				
-			}
-
+            }
 
 
-		}
+
+        }
         //phương thức để sử dụng phép thuật của nhân vật, sử dụng một vòng lặp để sinh ra các quả cầu lửa.
         //void CastSpell()
         //{

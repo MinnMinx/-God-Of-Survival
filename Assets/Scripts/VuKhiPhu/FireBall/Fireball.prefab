@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4540888099798087642}
   - component: {fileID: 4540888099798087640}
   m_Layer: 0
-  m_Name: Circle (3)
+  m_Name: Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 5d311c3af6b69734b91792517a0f4cbf, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,7 +101,8 @@ MonoBehaviour:
   ATKBase: 3
   ATKSpeed: 500
   time: 0
-  speed: 100
+  speed: 150
+  orbitDistance: 3
 --- !u!61 &4540888099798087640
 BoxCollider2D:
   m_ObjectHideFlags: 0
