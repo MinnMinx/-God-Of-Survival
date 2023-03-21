@@ -15,7 +15,7 @@ namespace Item {
 		[SerializeField]
 		private PickUpContext contextObjects;
         [SerializeField]
-        private PickUpSpawner spawner;
+        public PickUpSpawner spawner;
 		private LayerMask itemLayerMask;
 
 		private void Start()
@@ -80,7 +80,7 @@ namespace Item {
 		public class PickUpSpawner
         {
             [SerializeField]
-            private GameObject[] prefabs;
+            public GameObject[] prefabs;
             [SerializeField]
             private Vector2 spawnCdRandomRange;
 			[SerializeField]
