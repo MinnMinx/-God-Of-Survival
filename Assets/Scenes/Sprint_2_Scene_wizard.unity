@@ -5467,6 +5467,8 @@ MonoBehaviour:
   - {fileID: 2472380861746782351, guid: 332de998fac64974aae5ccf4a114dbf3, type: 3}
   - {fileID: 435741631719339742, guid: 113f7ae4d87ac0f449ba8593e4324020, type: 3}
   - {fileID: 1026140610316903321, guid: 1f8f3804e37284c4fbb34cdee50b2ab7, type: 3}
+  - {fileID: 7242175305422632666, guid: 9da1a2240e667ba4d941ca93d4803d2d, type: 3}
+  - {fileID: 3119753003673935324, guid: 5118501c70acdfd4b99dde6be213e9dc, type: 3}
 --- !u!1 &382806675
 GameObject:
   m_ObjectHideFlags: 0
@@ -6361,7 +6363,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9
+  orthographic size: 12
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 using PlayerCtrl = Core.PlayerController;
 
 namespace Monster
@@ -9,6 +10,8 @@ namespace Monster
     public class Monster : MonoBehaviour
     {
         private Core.PlayerController player;
+        private Animator anime;
+        private bool checkflip = true;
 
         private Transform destination; // player's transfrom
         public Transform Des
@@ -86,6 +89,7 @@ namespace Monster
 
         public void Start()
         {
+            anime = GetComponent<Animator>();
             tinhanhcheck();
             saveScreenSize();
         }
@@ -101,21 +105,41 @@ namespace Monster
         public void Update()
         {
             float step = speed * Time.deltaTime; // Tính toán khoảng cách Object di chuyển trong mỗi frame
-            transform.position = Vector3.MoveTowards(transform.position, destination.position, step); // Di chuyển Object đến vị trí đích
-
-            var distance = Vector3.Distance(transform.position, destination.position);
-
-            cd += Time.deltaTime;
-            if (distance <= atkrange && cd >= atkspeed)
+            if ((destination.position.x > transform.position.x && !checkflip) || (destination.position.x < transform.position.x && checkflip))
             {
-                Attack();
+                checkflip = !checkflip;
+                Vector3 scale = transform.localScale;
+                scale.x = -scale.x;
+                transform.localScale = scale;
             }
-
-            if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
-
-            if (hp <= 0)
+            else
             {
-                this.Despawn();
+                transform.position = Vector3.MoveTowards(transform.position, destination.position, step); // Di chuyển Object đến vị trí đích
+
+                var distance = Vector3.Distance(transform.position, destination.position);
+
+                cd += Time.deltaTime;
+                if (distance <= atkrange && cd >= atkspeed)
+                {
+                    Attack();
+                }
+
+                if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
+
+                if (hp <= 0)
+                {
+                    this.Despawn();
+                }
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            Debug.Log("takedame");
+            var a = collision.gameObject.GetComponent<Core.PlayerController>();
+            if (a != null)
+            {
+                a.TakeDamage(Atk);
             }
         }
 
@@ -128,7 +152,6 @@ namespace Monster
         
         public virtual void Attack()
         {
-            Debug.Log("Attack");
             cd = 0;
         }
 
@@ -141,7 +164,6 @@ namespace Monster
         {
             int xp = tinhanh == true ? 2 : 1;
             player.ReceiveExp(xp);
-            //Debug.Log("???");
             Destroy(this.gameObject);
         }
 
@@ -164,8 +186,9 @@ namespace Monster
         {
             System.Random rnd = new System.Random();
             int check = rnd.Next(100);
-            if (check <= 50) tinhanh = true;
+            if (check < 5) tinhanh = true;
             else tinhanh = false;
         }
+
     }
 }

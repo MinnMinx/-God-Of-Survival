@@ -11,7 +11,7 @@ namespace Monster
         private GameObject bullet;
 
         [SerializeField]
-        private float bulletSp = 10f;
+        private float bulletSp = 3f;
 
         private new void Start()
         {
@@ -21,16 +21,16 @@ namespace Monster
             Hp = base.GetHp(Basehp);
             Atkrange = 20;
             Speed = 1;
-            Atkspeed = 1/0.35f;
+            Atkspeed = 1/0.5f;
             Cd = Atkspeed;
 
             if (Tinhanh)
             {
                 Atk = Atk * 1.5f;
                 Hp = Hp * 1.3f;
-                Atkspeed = 1/0.7f;
+                Atkspeed = 1/1f;
                 Cd = Atkspeed;
-                gameObject.transform.localScale = new Vector3(2, 2, 2);
+                gameObject.transform.localScale = new Vector3(4, 4, 2);
                 //Debug.Log("tinh anh spawn");
             }
         }
