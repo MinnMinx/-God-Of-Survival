@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8694385961151182739}
   - component: {fileID: 1475780809763164979}
   - component: {fileID: 3924865211222483744}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MonsterShiled2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -186,7 +186,7 @@ namespace Monster
         {
             System.Random rnd = new System.Random();
             int check = rnd.Next(100);
-            if (check <= 50) tinhanh = true;
+            if (check < 5) tinhanh = true;
             else tinhanh = false;
         }
 

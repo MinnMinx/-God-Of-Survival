@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3704123414083592071}
   - component: {fileID: 5621158981571212832}
   - component: {fileID: 5503906371778602819}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MonsterGun2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

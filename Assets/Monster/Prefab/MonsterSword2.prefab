@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8175239056227963670}
   - component: {fileID: 7608538717207224296}
   - component: {fileID: 165863720534543924}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MonsterSword2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

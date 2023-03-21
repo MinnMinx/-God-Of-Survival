@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2125446134404665451}
   - component: {fileID: 453218536177085558}
   - component: {fileID: 1701896708376356920}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MonsterArrow2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

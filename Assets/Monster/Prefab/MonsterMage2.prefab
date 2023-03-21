@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7617994302549586740}
   - component: {fileID: 7617994302549586731}
   - component: {fileID: 7592175100982882751}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MonsterMage2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
