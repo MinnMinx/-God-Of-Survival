@@ -9,7 +9,7 @@ namespace Monster
         [SerializeField]
         private GameObject arrow;
         [SerializeField]
-        private float bulletSp = 2f;
+        private float bulletSp = 8f;
 
         private new void Start()
         {

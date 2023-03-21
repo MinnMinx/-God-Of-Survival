@@ -39,10 +39,10 @@ namespace Monster
         {
             Debug.Log("" + Atkspeed);
             Vector2 target = new Vector2(Des.position.x, Des.position.y);
-            var newBullet = Instantiate(bullet, transform.position, transform.rotation);
+            Vector2 direction = (target - (Vector2)transform.position).normalized;
+            var newBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, -Vector2.SignedAngle(direction, Vector2.up)));
             var rb = newBullet.GetComponent<Rigidbody2D>();
             newBullet.GetComponent<BulletController>().Atk = Atk;
-            Vector2 direction = (target - (Vector2)transform.position).normalized;
             rb.AddForce(direction * bulletSp, ForceMode2D.Impulse);
             base.Cd = 0;
             //Debug.Log("Gun Attack");

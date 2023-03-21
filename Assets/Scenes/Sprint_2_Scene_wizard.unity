@@ -5464,10 +5464,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 8154960875292420856}
   monsters:
-  - {fileID: 9040492120150725671, guid: bec1892df8ba83f4f9129a468c6ebe16, type: 3}
   - {fileID: 2125446134404665448, guid: 3267c407cc4a5544482afe0441003fbc, type: 3}
   - {fileID: 7000022384932583199, guid: 4550bde63a0ecb64baece47fded3799d, type: 3}
   - {fileID: 7617994302549586730, guid: 1982144c453f5064880c3ab266cfcee5, type: 3}
+  - {fileID: 9040492120150725671, guid: bec1892df8ba83f4f9129a468c6ebe16, type: 3}
   - {fileID: 8175239056227963673, guid: d23d96deb61c94a4fad535047aadeca7, type: 3}
 --- !u!1 &382806675
 GameObject:

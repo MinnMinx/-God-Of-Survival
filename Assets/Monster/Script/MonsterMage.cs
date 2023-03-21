@@ -44,7 +44,7 @@ namespace Monster
             Quaternion rotation = Quaternion.Euler(0, 0, 15);
             for (int i = 0;i < numbers; i++)
             {
-                var newBullet = Instantiate(bullet, transform.position, transform.rotation);
+                var newBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, -Vector2.SignedAngle(direction, Vector2.up)));
                 var rb = newBullet.GetComponent<Rigidbody2D>();
                 newBullet.GetComponent<BulletController>().Atk = Atk;              
                 rb.AddForce(direction * bulletSp, ForceMode2D.Impulse);
