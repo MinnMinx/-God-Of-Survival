@@ -15,7 +15,16 @@ namespace Monster
             Atkrange = 0;
             Speed = 1.25f;
             Atkspeed = 1;
-            Cd = 1;           
+            Cd = 1;
+
+            if (Tinhanh)
+            {
+                Atk = Atk * 1.1f;
+                Hp = Hp * 1.4f;
+                speed = speed * 1.4f;
+                gameObject.transform.localScale = new Vector3(4, 4, 2);
+                //Debug.Log("tinh anh spawn");
+            }
         }
     }
 }

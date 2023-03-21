@@ -21,7 +21,7 @@ namespace Monster
 
         private float spawnrate;
         private int level;
-        private float heso = 0.5f;
+        private float heso = 0.3f;
         private float time = 0;
 
         // Start is called before the first frame update
@@ -68,7 +68,7 @@ namespace Monster
         {
             level = player.Level;
             float a = (float)Math.Pow(level, heso);
-            spawnrate = 1*a;
+            spawnrate = 2/a;
         }
 
         private void saveScreenSize()
