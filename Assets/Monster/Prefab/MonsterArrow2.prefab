@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   arrow: {fileID: 3093948584941082216, guid: be7247e80b62a104dba01730c52d139d, type: 3}
-  bulletSp: 2
+  bulletSp: 8
 --- !u!61 &1701896708376356920
 BoxCollider2D:
   m_ObjectHideFlags: 0

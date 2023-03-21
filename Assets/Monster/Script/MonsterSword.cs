@@ -19,7 +19,7 @@ namespace Monster
             Hp = base.GetHp(Basehp);
             Atkrange = 0f;
             Speed = 1.25f;
-            Atkspeed = 1;
+            Atkspeed = 1/1f;
             Cd = 1;
 
             if (Tinhanh)
