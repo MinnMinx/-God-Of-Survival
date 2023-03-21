@@ -145,6 +145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f79293492563448bb64fa4e76b3166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listItem:
+  - {fileID: 5595544873782067161, guid: 96e1172b857c25e4c82837fbb0690677, type: 3}
+  - {fileID: 6280061216681449979, guid: 3c85546fa23deec49bf880e3d8f4305b, type: 3}
+  subWeapon: []
   speed: 0
   bullet: {fileID: 842105427220834607, guid: 5a67994a86691bf4fad1d699226eb0a2, type: 3}
   bulletSp: 8

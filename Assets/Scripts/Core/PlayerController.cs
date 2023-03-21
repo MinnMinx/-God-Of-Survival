@@ -39,6 +39,7 @@ namespace Core
         private void OnDisable()
         {
             PlayerPrefs.SetFloat("score", Score);
+            PlayerPrefs.SetInt("level", Level);
         }
 
         // Start is called before the first frame update

@@ -145,4 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e46e3b1fce27aa4a994e02cb3571b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listItem:
+  - {fileID: 5595544873782067161, guid: 96e1172b857c25e4c82837fbb0690677, type: 3}
+  subWeapon:
+  - {fileID: 6280061216681449979, guid: 3c85546fa23deec49bf880e3d8f4305b, type: 3}
   speed: 0
