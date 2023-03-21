@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using VuKhi;
 
-public class FireShoesController : MonoBehaviour
+public class FireShoesController : Base
 {
     // Start is called before the first frame update
     void Start()
