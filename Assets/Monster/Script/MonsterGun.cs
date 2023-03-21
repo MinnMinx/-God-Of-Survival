@@ -11,7 +11,7 @@ namespace Monster
         private GameObject bullet;
 
         [SerializeField]
-        private float bulletSp = 3f;
+        private float bulletSp = 5f;
 
         private new void Start()
         {
@@ -19,7 +19,7 @@ namespace Monster
             Atk = 2;
             Basehp = 3;
             Hp = base.GetHp(Basehp);
-            Atkrange = 20;
+            Atkrange = 15;
             Speed = 1;
             Atkspeed = 1/0.5f;
             Cd = Atkspeed;
@@ -37,6 +37,7 @@ namespace Monster
 
         public override void Attack()
         {
+            Debug.Log("" + Atkspeed);
             Vector2 target = new Vector2(Des.position.x, Des.position.y);
             var newBullet = Instantiate(bullet, transform.position, transform.rotation);
             var rb = newBullet.GetComponent<Rigidbody2D>();

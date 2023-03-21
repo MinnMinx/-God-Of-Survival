@@ -112,34 +112,34 @@ namespace Monster
                 scale.x = -scale.x;
                 transform.localScale = scale;
             }
-            else
+
+            transform.position = Vector3.MoveTowards(transform.position, destination.position, step); // Di chuyển Object đến vị trí đích
+
+            var distance = Vector3.Distance(transform.position, destination.position);
+
+            cd += Time.deltaTime;
+            if (distance < atkrange && cd >= atkspeed)
             {
-                transform.position = Vector3.MoveTowards(transform.position, destination.position, step); // Di chuyển Object đến vị trí đích
-
-                var distance = Vector3.Distance(transform.position, destination.position);
-
-                cd += Time.deltaTime;
-                if (distance <= atkrange && cd >= atkspeed)
-                {
-                    Attack();
-                }
-
-                if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
-
-                if (hp <= 0)
-                {
-                    this.Despawn();
-                }
+                Attack();
             }
+
+            if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
+
+            if (hp <= 0)
+            {
+                this.Despawn();
+            }
+
         }
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
             Debug.Log("takedame");
             var a = collision.gameObject.GetComponent<Core.PlayerController>();
-            if (a != null)
+            if (a != null && cd > atkspeed)
             {
                 a.TakeDamage(Atk);
+                cd = 0;
             }
         }
 
@@ -149,7 +149,7 @@ namespace Monster
             hp = basehp * a;
             return hp;
         }
-        
+
         public virtual void Attack()
         {
             cd = 0;

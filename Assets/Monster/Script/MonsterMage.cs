@@ -10,7 +10,7 @@ namespace Monster
         private GameObject bullet;
 
         [SerializeField]
-        private float bulletSp = 2f;
+        private float bulletSp = 5f;
 
         private int numbers = 3;
         private new void Start()
@@ -19,15 +19,15 @@ namespace Monster
             Atk = 1;
             Basehp = 3;
             Hp = base.GetHp(Basehp);
-            Atkrange = 20;
+            Atkrange = 15;
             Speed = 1;
-            Atkspeed = 1/0.75f;
+            Atkspeed = 1/0.5f;
             Cd = 1.5f;
 
             if (Tinhanh)
             {
                 Atk = Atk * 1.4f;
-                Atkspeed = 1 / 1f;
+                Atkspeed = 1 / 0.75f;
                 Cd = Atkspeed;
                 numbers = 5;
                 gameObject.transform.localScale = new Vector3(4, 4, 2);
