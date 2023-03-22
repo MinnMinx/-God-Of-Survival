@@ -37,7 +37,6 @@ namespace Monster
 
         public override void Attack()
         {
-            Debug.Log("" + Atkspeed);
             Vector2 target = new Vector2(Des.position.x, Des.position.y);
             Vector2 direction = (target - (Vector2)transform.position).normalized;
             var newBullet = Instantiate(bullet, transform.position, Quaternion.Euler(0, 0, -Vector2.SignedAngle(direction, Vector2.up)));

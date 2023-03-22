@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7592175100982882751}
   m_Layer: 8
   m_Name: MonsterMage2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,6 +151,7 @@ MonoBehaviour:
   subWeapon:
   - {fileID: 7242188356691502204, guid: 005f7108c6bacdf4b925dbcbb2e3a56e, type: 3}
   - {fileID: 4324797206129515815, guid: 038bfdc34d81f5a429cb135863b56bda, type: 3}
+  - {fileID: 2688584332907760555, guid: f7581b78351777a42a2bb1246ce8bb71, type: 3}
   speed: 0
   bullet: {fileID: 842105427220834607, guid: 5a67994a86691bf4fad1d699226eb0a2, type: 3}
   bulletSp: 8
