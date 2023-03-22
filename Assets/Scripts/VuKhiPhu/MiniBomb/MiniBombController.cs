@@ -52,6 +52,7 @@ namespace VuKhiPhu
                 else
                 {
                     player.Heal(20);
+                    Destroy(gameObject);
                 }
             }
         }

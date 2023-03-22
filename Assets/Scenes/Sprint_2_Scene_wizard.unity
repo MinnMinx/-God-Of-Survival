@@ -17179,7 +17179,7 @@ MonoBehaviour:
     - {fileID: 4324797206129515815, guid: 038bfdc34d81f5a429cb135863b56bda, type: 3}
     - {fileID: 6280061216681449979, guid: 3c85546fa23deec49bf880e3d8f4305b, type: 3}
     - {fileID: 5595544873782067161, guid: 96e1172b857c25e4c82837fbb0690677, type: 3}
-    spawnCdRandomRange: {x: 1, y: 2}
+    spawnCdRandomRange: {x: 15, y: 30}
     parent: {fileID: 1954554528}
 --- !u!4 &1954554528
 Transform:
