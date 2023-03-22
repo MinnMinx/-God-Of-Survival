@@ -20,6 +20,7 @@ namespace VuKhi
             this.level = level;
             currentExp = 0;
             this.levelUpAction = levelUpAction;
+            levelUpAction(level);
 		}
 
         public void GetExp(int value)

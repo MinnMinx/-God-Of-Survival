@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Core
 {
@@ -53,6 +54,10 @@ namespace Core
 				for (int i = 0; i < Input.touchCount; i++)
 				{
 					Touch temp = Input.GetTouch(i);
+					if (EventSystem.current.IsPointerOverGameObject(temp.fingerId))
+					{
+						continue;
+					}
 					if (temp.fingerId == moveTouchId)
 					{
 						moveTouch = temp;
@@ -116,6 +121,10 @@ namespace Core
 				for (int i = 0; i < Input.touchCount; i++)
 				{
 					Touch temp = Input.GetTouch(i);
+					if (EventSystem.current.IsPointerOverGameObject(temp.fingerId))
+					{
+						continue;
+					}
 					if (temp.fingerId == moveTouchId)
 					{
 						hasMoveTouch = temp.phase != TouchPhase.Ended && temp.phase != TouchPhase.Canceled;
