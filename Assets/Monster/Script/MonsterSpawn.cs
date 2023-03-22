@@ -23,6 +23,7 @@ namespace Monster
         private int level;
         private float heso = 0.3f;
         private float time = 0;
+        public static List<GameObject> spawned = new List<GameObject>();
 
         // Start is called before the first frame update
         void Start()
@@ -32,11 +33,12 @@ namespace Monster
         // Update is called once per frame
         void Update()
         {
+            Debug.Log(spawned.Count);
             time += Time.deltaTime;
             saveScreenSize();
             SetSpwanrate();
             //Debug.Log("" + spawnrate);
-            if (time >= spawnrate)
+            if (time >= spawnrate || spawned.Count == 0)
             {
                 System.Random rnd = new System.Random();
                 List<float> x = new List<float>();
@@ -61,6 +63,7 @@ namespace Monster
             GameObject monster = Instantiate(monsters[rnd.Next(monsters.Count)]);
             monster.transform.position = position;
             monster.GetComponent<Monster>().SetPlayer(player);
+            spawned.Add(monster);
         }
 
 

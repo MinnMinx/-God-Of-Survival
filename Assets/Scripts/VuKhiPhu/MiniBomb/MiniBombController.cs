@@ -116,9 +116,6 @@ namespace VuKhiPhu
                 // Hủy quả bom
                 Destroy(gameObject, explosionTime);
             }
-
-
-
         }
     }
 

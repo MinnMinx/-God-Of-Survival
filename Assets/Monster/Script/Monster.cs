@@ -177,6 +177,7 @@ namespace Monster
             int xp = tinhanh == true ? 2 : 1;
             player.ReceiveExp(xp);
             Drop();
+            MonsterSpawn.spawned.Remove(gameObject);
             Destroy(this.gameObject);
         }
 

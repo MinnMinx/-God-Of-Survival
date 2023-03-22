@@ -2083,7 +2083,7 @@ MonoBehaviour:
     player: {fileID: 8154960875292420856}
   spawner:
     prefabs:
-    - {fileID: 4324797206129515815, guid: 038bfdc34d81f5a429cb135863b56bda, type: 3}
+    - {fileID: 8974818269815090366, guid: 965729643457ec14c954a46a5ba5fc51, type: 3}
     spawnCdRandomRange: {x: 1, y: 5}
     parent: {fileID: 1954554528}
 --- !u!4 &1954554528
