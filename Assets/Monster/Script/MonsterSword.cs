@@ -18,14 +18,14 @@ namespace Monster
             Basehp = 4;
             Hp = base.GetHp(Basehp);
             Atkrange = 0f;
-            Speed = 1.25f;
+            Speed = 2f;
             Atkspeed = 1/1f;
             Cd = 1;
 
             if (Tinhanh)
             {
                 Atk = Atk * 1.3f;
-                Hp = Hp * 1.4f;
+                Hp = Hp * 2.4f;
                 speed = speed * 1.3f;
                 gameObject.transform.localScale = new Vector3(4, 4, 2);
                 //Debug.Log("tinh anh spawn");

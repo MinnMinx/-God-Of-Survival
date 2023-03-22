@@ -11,17 +11,19 @@ namespace VuKhi
         [SerializeField]
         private Core.PlayerController player;
 		[SerializeField]
+		private Transform weaponSpr;
+		[SerializeField]
 		private ParticleSystem ps;
 		private ParticleSystem.MainModule psMain;
 		private ParticleSystem.EmissionModule psEmit;
 		private float shootCd;
 
         private WeaponLeveling leveling;
-        [SerializeField]
-        private int _level;
 
 		private int stack = 0;
 		private float pushBackValue = 0;
+
+		public float PlayerAtk => player.BaseAttack;
 
 		private void Start()
 		{
@@ -32,19 +34,14 @@ namespace VuKhi
 				ps.Play(true);
 				shootCd = 1f / base.ATKSpeed;
 			}
-			_level = 1;
             leveling = new WeaponLeveling();
             leveling.Initialize(1, LevelUp);
+			player.SetWeaponSpriteObject(weaponSpr);
 		}
 
 		// Update is called once per frame
 		void Update()
         {
-            if (_level != leveling.Level)
-            {
-                leveling._ChangeLevel(_level);
-			}
-
             if (player != null && ps != null)
             {
                 ps.transform.rotation = Quaternion.Euler(0, 0, player.PlayerAngle);
@@ -65,8 +62,8 @@ namespace VuKhi
                 case 1:
                     base.ATKBase = 1f;
                     ATKSpeed = 1f;
-                    psMain.startLifetime = 0.5f;
-					psMain.startSpeed = 8f;
+                    psMain.startLifetime = 0.8f;
+					psMain.startSpeed = 8.5f;
 					burst.count = 3;
 					psEmit.SetBurst(0, burst);
 					pushBackValue = 0;
@@ -74,8 +71,8 @@ namespace VuKhi
                 case 2:
                     ATKBase = 1.1f;
 					ATKSpeed = 1.2f;
-					psMain.startLifetime = 0.6f;
-					psMain.startSpeed = 8.3f;
+					psMain.startLifetime = 0.95f;
+					psMain.startSpeed = 8.8f;
 					burst.count = 3;
 					psEmit.SetBurst(0, burst);
 					pushBackValue = 0;
@@ -83,16 +80,16 @@ namespace VuKhi
                 case 3:
 					ATKBase = 1.2f;
 					ATKSpeed = 1.3f;
-					psMain.startLifetime = 0.75f;
+					psMain.startLifetime = 1.1f;
 					pushBackValue = 0.1f;
-					psMain.startSpeed = 8.8f;
+					psMain.startSpeed = 9.1f;
 					burst.count = 4;
 					psEmit.SetBurst(0, burst);
 					break;
                 case 4:
 					ATKBase = 1.4f;
 					ATKSpeed = 1.4f;
-                    psMain.startLifetime = 0.9f;
+                    psMain.startLifetime = 1.3f;
 					psMain.startSpeed = 9.5f;
 					burst.count = 4;
 					pushBackValue = 0.2f;
@@ -101,7 +98,7 @@ namespace VuKhi
                 case 5:
 					ATKBase = 1.6f;
 					ATKSpeed = 1.5f;
-					psMain.startLifetime = 1f;
+					psMain.startLifetime = 1.5f;
 					psMain.startSpeed = 12f;
 					burst.count = 6;
 					psEmit.SetBurst(0, burst);
