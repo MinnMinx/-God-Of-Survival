@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2125446134404665448}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.635132, y: 3.3253336, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -123,8 +123,8 @@ MonoBehaviour:
   - {fileID: 5595544873782067161, guid: 96e1172b857c25e4c82837fbb0690677, type: 3}
   - {fileID: 6280061216681449979, guid: 3c85546fa23deec49bf880e3d8f4305b, type: 3}
   subWeapon:
-  - {fileID: 4324797206129515815, guid: 038bfdc34d81f5a429cb135863b56bda, type: 3}
   - {fileID: 7242188356691502204, guid: 005f7108c6bacdf4b925dbcbb2e3a56e, type: 3}
+  - {fileID: 4324797206129515815, guid: 038bfdc34d81f5a429cb135863b56bda, type: 3}
   speed: 0
   arrow: {fileID: 3093948584941082216, guid: be7247e80b62a104dba01730c52d139d, type: 3}
   bulletSp: 8
