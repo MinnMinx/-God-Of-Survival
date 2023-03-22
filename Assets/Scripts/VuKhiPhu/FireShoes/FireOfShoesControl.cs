@@ -55,7 +55,6 @@ public class FireOfShoesControl : Base
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("trigger fire");
         // Destroy(gameObject); 
 
         var enemy = other.gameObject.GetComponent<Monster.Monster>();
