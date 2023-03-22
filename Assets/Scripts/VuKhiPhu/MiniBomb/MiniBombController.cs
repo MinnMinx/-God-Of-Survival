@@ -1,8 +1,12 @@
-﻿using Monster;
+﻿using Mono.Cecil;
+using Monster;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.UIElements;
 using VuKhi;
 
 namespace VuKhiPhu
@@ -10,114 +14,45 @@ namespace VuKhiPhu
     public class MiniBombController : Base
     {
         public GameObject bombPrefab;
-        public GameObject player;
+        public Transform player;
         public float spawnTime = 5f;
-
-        private float timer = 0f;
-
-        public float explosionRadius = 5f; // Bán kính của vùng nổ
-        public float explosionForce = 1000f; // Lực nổ
-        public float explosionTime = 3f; // Thời gian phát nổ
+        public static int Count = 0;
+        private bool check = false;
+        //public float explosionRadius = 5f; // Bán kính của vùng nổ
+        //public float explosionForce = 1000f; // Lực nổ
+        //public float explosionTime = 3f; // Thời gian phát nổ
         public GameObject explosionEffect; // Hiệu ứng nổ
 
-        private bool isExploded = false; // Kiểm tra xem quả bom đã phát nổ chưa
 
         private void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
-        ////sinh ra vị trí ném bom:
-        Vector3 GetThrowPosition(Vector3 playerPosition, GameObject enemy, float radius)
-        {
-            Vector3 throwPosition;
 
-            if (enemy != null)
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            var player = other.gameObject.GetComponent<Core.PlayerController>();
+            var firecheck = other.gameObject.GetComponent<MiniBomb>();
+            if (player != null && firecheck == null)
             {
-                throwPosition = enemy.transform.position;
+                check = true;
+                other.gameObject.AddComponent<MiniBomb>();
+                other.gameObject.GetComponent<MiniBomb>().bomb = this.bombPrefab;
+                other.gameObject.GetComponent<MiniBomb>().boom = this.explosionEffect;
+                Destroy(gameObject);
             }
-            else
+            else if (player != null && firecheck != null)
             {
-                float randomAngle = Random.Range(0f, Mathf.PI * 2f);
-                float randomRadius = Random.Range(0f, radius);
-                throwPosition = new Vector3(playerPosition.x + randomRadius * Mathf.Cos(randomAngle), playerPosition.y, playerPosition.z + randomRadius * Mathf.Sin(randomAngle));
-            }
-
-            return throwPosition;
-        }
-        ////Hàm để tính khoảng cách giữa player và địch
-        float Distance(Vector3 playerPosition, Vector3 enemyPosition)
-        {
-            return Vector3.Distance(playerPosition, enemyPosition);
-        }
-        ////tìm địch gần nhất trong bán kính 30f:
-        GameObject FindClosestEnemy(Vector3 playerPosition, float radius)
-        {
-            GameObject closestEnemy = null;
-            float closestDistance = Mathf.Infinity;
-
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-            {
-                float distance = Distance(playerPosition, enemy.transform.position);
-                if (distance < closestDistance && distance <= radius)
+                if (firecheck.count < 3)
                 {
-                    closestEnemy = enemy;
-                    closestDistance = distance;
+                    firecheck.count ++;
+                    firecheck.speed += 0.2f;
+                    Destroy(gameObject);
                 }
-            }
-
-            return closestEnemy;
-        }
-
-        void Update()
-        {
-            timer += Time.deltaTime;
-
-            if (timer >= spawnTime)
-            {
-                SpawnBomb();
-                timer = 0f;
-            }
-        }
-        //Tạo bom
-        void SpawnBomb()
-        {
-            Instantiate(bombPrefab, GetThrowPosition(player.transform.position, FindClosestEnemy(player.transform.position, 10f), 10f), Quaternion.identity);
-        }
-
-
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            if (!isExploded && collision.gameObject.CompareTag("Enemy"))
-            {
-                isExploded = true;
-                Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-
-                foreach (Collider2D nearbyObject in colliders)
-                {
-                    //Rigidbody2D rb = nearbyObject.GetComponent<Rigidbody2D>();
-                    //if (rb != null)
-                    //{
-                    //    rb.AddExplosionForce(explosionForce, transform.position, explosionRadius);
-                    //}
-
-                    Monster.Monster enemy = nearbyObject.GetComponent<Monster.Monster>();
-                    if (enemy != null)
-                    {
-                        Debug.Log("minibom");
-                        enemy.takedamage(10); // Gây sát thương cho quái
-                    }
-                }
-
-                // Tạo hiệu ứng nổ
-                Instantiate(explosionEffect, transform.position, Quaternion.identity);
-
-                // Hủy quả bom
-                Destroy(gameObject, explosionTime);
             }
         }
     }
-
 }
 

@@ -38,7 +38,6 @@ public class FireOfShoesControl : Base
         time += Time.deltaTime;
         if (time > cd)
         {
-            Debug.Log("" + liftime);
             spawnfire();
             time = 0;
         }
@@ -51,18 +50,6 @@ public class FireOfShoesControl : Base
         f.lifetime = this.liftime;
         f.time2 = 0;
         list.Add(f);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // Destroy(gameObject); 
-
-        var enemy = other.gameObject.GetComponent<Monster.Monster>();
-        if (enemy != null)
-        {
-            Debug.Log("ouch fire");
-            enemy.takedamage(ATKBase);
-        }
     }
 
     public class fireshoes2

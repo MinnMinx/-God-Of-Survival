@@ -33,7 +33,6 @@ namespace Monster
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(spawned.Count);
             time += Time.deltaTime;
             saveScreenSize();
             SetSpwanrate();
