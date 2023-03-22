@@ -9,6 +9,10 @@ namespace Monster
 {
     public class Monster : MonoBehaviour
     {
+        [SerializeField]
+        private List<GameObject> listItem;
+        [SerializeField]
+        private List<GameObject> subWeapon;
         private Core.PlayerController player;
         private Animator anime;
         private bool checkflip = true;
@@ -86,10 +90,19 @@ namespace Monster
             set { tinhanh = value; }
         }
 
+        private float itemRate;
+        public float ItemRate
+        {
+            get { return itemRate; }
+            set { itemRate = value; }
+        }
+
+
 
         public void Start()
         {
             anime = GetComponent<Animator>();
+            itemRate = 50f;
             tinhanhcheck();
             saveScreenSize();
         }
@@ -164,6 +177,7 @@ namespace Monster
         {
             int xp = tinhanh == true ? 2 : 1;
             player.ReceiveExp(xp);
+            Drop();
             Destroy(this.gameObject);
         }
 
@@ -186,9 +200,35 @@ namespace Monster
         {
             System.Random rnd = new System.Random();
             int check = rnd.Next(100);
-            if (check < 5) tinhanh = true;
+            if (check < 5)
+            {
+                itemRate = 100;
+                tinhanh = true;
+            }
             else tinhanh = false;
         }
 
+        private void Drop()
+        {
+            System.Random rnd = new System.Random();
+            int check = rnd.Next(100);
+            if (check <= itemRate)
+            {
+                int check2 = rnd.Next(100);
+                if (check2 < 70)
+                {
+                    int check3 = rnd.Next(listItem.Count -1);
+                    Instantiate(listItem[check3], transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    if (subWeapon.Count > 0)
+                    {
+                        int check3 = rnd.Next(subWeapon.Count -1);
+                        Instantiate(subWeapon[check3], transform.position, Quaternion.identity);
+                    }
+                }
+            }
+        }
     }
 }

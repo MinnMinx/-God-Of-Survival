@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6294807929513120540}
   - component: {fileID: 968816736705699432}
   - component: {fileID: 7577786217638343584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Item_Fireshoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: a97d5555ce9324f43a65e59002297ed3, type: 3}
   m_Color: {r: 1, g: 0.5263549, b: 0, a: 1}
   m_FlipX: 0
@@ -124,3 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22df4acf8dd453d48b6ea6d9d2c86616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ATKBase: 3
+  ATKSpeed: 1
+  time: 0
+  fireShoes: {fileID: 7846075748033522814, guid: ba9bf6e9a7ddbad4392dff94129cc7eb, type: 3}

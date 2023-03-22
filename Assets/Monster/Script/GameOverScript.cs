@@ -7,20 +7,26 @@ using UnityEngine.UI;
 public class GameOverScript : MonoBehaviour
 {
     // Start is called before the first frame update
-
     public Text text;
+    private float Score;
     private void Start()
     {
     }
 
     private void Update()
     {
+        SetScore();
     }
 
-    public void SetScore(float score)
+    void OnEnable()
+    {
+        Score = PlayerPrefs.GetFloat("score");
+    }
+
+    public void SetScore()
     {
         
-        text.text = "Score: " + score;
+        text.text = "Score: " + Score;
     }
 
     public void OnButtonClick()

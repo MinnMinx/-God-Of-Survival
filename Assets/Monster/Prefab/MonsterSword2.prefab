@@ -119,6 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be844d1beb8c6634aae7d2152eb3d94f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listItem:
+  - {fileID: 6280061216681449979, guid: 3c85546fa23deec49bf880e3d8f4305b, type: 3}
+  - {fileID: 5595544873782067161, guid: 96e1172b857c25e4c82837fbb0690677, type: 3}
+  subWeapon: []
   speed: 0
 --- !u!61 &165863720534543924
 BoxCollider2D:
