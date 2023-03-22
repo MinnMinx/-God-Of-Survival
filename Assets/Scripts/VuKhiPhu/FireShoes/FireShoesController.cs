@@ -43,6 +43,10 @@ public class FireShoesController : Base
                 Destroy(gameObject);
                 firecheck.count++;
             }
+            else
+            {
+                player.Heal(20);
+            }
         }
     }
 }

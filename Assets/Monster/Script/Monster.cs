@@ -102,7 +102,7 @@ namespace Monster
         public void Start()
         {
             anime = GetComponent<Animator>();
-            itemRate = 50f;
+            itemRate = 10f;
             tinhanhcheck();
             saveScreenSize();
         }
@@ -212,10 +212,10 @@ namespace Monster
         {
             System.Random rnd = new System.Random();
             int check = rnd.Next(100);
-            if (check <= itemRate)
+            if (check <= itemRate && !tinhanh)
             {
                 int check2 = rnd.Next(100);
-                if (check2 < 50)
+                if (check2 < 70)
                 {
                     int check3 = rnd.Next(listItem.Count);
                     Instantiate(listItem[check3], transform.position, Quaternion.identity);
@@ -228,6 +228,15 @@ namespace Monster
                         int check3 = rnd.Next(subWeapon.Count);
                         Instantiate(subWeapon[check3], transform.position, Quaternion.identity);
                     }
+                }
+            }
+            else if (tinhanh)
+            {
+                if (subWeapon.Count > 0)
+                {
+
+                    int check3 = rnd.Next(subWeapon.Count);
+                    Instantiate(subWeapon[check3], transform.position, Quaternion.identity);
                 }
             }
         }

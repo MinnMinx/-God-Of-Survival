@@ -14,19 +14,17 @@ namespace VuKhiPhu
     public class MiniBombController : Base
     {
         public GameObject bombPrefab;
-        public Transform player;
         public float spawnTime = 5f;
-        public static int Count = 0;
-        private bool check = false;
         //public float explosionRadius = 5f; // Bán kính của vùng nổ
         //public float explosionForce = 1000f; // Lực nổ
         //public float explosionTime = 3f; // Thời gian phát nổ
         public GameObject explosionEffect; // Hiệu ứng nổ
+        public GameObject bomcontrol;
 
 
         private void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+            bomcontrol = GameObject.Find("BombController");
         }
 
 
@@ -34,22 +32,26 @@ namespace VuKhiPhu
         private void OnTriggerEnter2D(Collider2D other)
         {
             var player = other.gameObject.GetComponent<Core.PlayerController>();
-            var firecheck = other.gameObject.GetComponent<MiniBomb>();
-            if (player != null && firecheck == null)
+            var minibom = bomcontrol.GetComponent<MiniBomb>();
+            var firecheck = minibom.active;
+            if (player != null && !firecheck)
             {
-                check = true;
-                other.gameObject.AddComponent<MiniBomb>();
-                other.gameObject.GetComponent<MiniBomb>().bomb = this.bombPrefab;
-                other.gameObject.GetComponent<MiniBomb>().boom = this.explosionEffect;
+                minibom.active = true;
+                minibom.count = 1;
                 Destroy(gameObject);
             }
-            else if (player != null && firecheck != null)
+            else if (player != null && firecheck)
             {
-                if (firecheck.count < 3)
+                if (minibom.cd >= 1)
                 {
-                    firecheck.count ++;
-                    firecheck.speed += 0.2f;
+                    minibom.ATKBase++;
+                    minibom.cd -= 0.5f;
+                    minibom.speed += 0.2f;
                     Destroy(gameObject);
+                }
+                else
+                {
+                    player.Heal(20);
                 }
             }
         }

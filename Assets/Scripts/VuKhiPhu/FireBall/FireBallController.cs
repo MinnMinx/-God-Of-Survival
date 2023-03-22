@@ -28,15 +28,6 @@ namespace VuKhiPhu
         void Update()
         {
             Orbit();
-            //         if(count == 6)
-            //         {
-            //             var renderItem = GameObject.Find("ItemController").GetComponent<PickUpController>().spawner.prefabs;
-            //             if (renderItem != null)
-            //             {
-
-            //	}
-
-            //}
 
         }
 
@@ -54,7 +45,6 @@ namespace VuKhiPhu
                 transform.position = player.position + (transform.position - player.position).normalized * orbitDistance;
                 transform.RotateAround(player.position, Vector3.forward, speed * Time.deltaTime);
 
-                Debug.Log(count);
             }
         }
 
@@ -66,19 +56,23 @@ namespace VuKhiPhu
             var enemy = other.gameObject.GetComponent<Monster.Monster>();
             if (enemy != null)
             {
-                Debug.Log("ouch fire");
                 enemy.takedamage(ATKBase);
             }
 
             var player = other.gameObject.GetComponent<Core.PlayerController>();
-            if (player != null && count < 6)
+            if (player != null)
             {
-                active = true;
-                gameObject.AddComponent<Rigidbody2D>();
-                count++;
-                Debug.Log("add fire");
-
+                if (count < 6)
+                {
+                    active = true;
+                    count++;
+                }
+                else
+                {
+                    player.Heal(20);
+                }
             }
+            
 
 
 

@@ -125,6 +125,7 @@ MonoBehaviour:
   subWeapon:
   - {fileID: 7242188356691502204, guid: 005f7108c6bacdf4b925dbcbb2e3a56e, type: 3}
   - {fileID: 4324797206129515815, guid: 038bfdc34d81f5a429cb135863b56bda, type: 3}
+  - {fileID: 2688584332907760555, guid: f7581b78351777a42a2bb1246ce8bb71, type: 3}
   speed: 0
   bullet: {fileID: 4012511363123358763, guid: eb7a5238b9c029a499c38d33eda9a55f, type: 3}
   bulletSp: 8
