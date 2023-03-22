@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 6164163734189993544}
   - component: {fileID: 4272701903489358338}
   - component: {fileID: -5113740611911145136}
-  m_Layer: 0
+  - component: {fileID: -224119474662404022}
+  m_Layer: 7
   m_Name: Item_Fireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: 5d311c3af6b69734b91792517a0f4cbf, type: 3}
   m_Color: {r: 1, g: 0.46990138, b: 0, a: 1}
   m_FlipX: 0
@@ -101,7 +102,8 @@ MonoBehaviour:
   ATKBase: 3
   ATKSpeed: 1
   time: 0
-  fireballprefab: {fileID: 0}
+  speed: 150
+  orbitDistance: 5
 --- !u!58 &-5113740611911145136
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -118,3 +120,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!50 &-224119474662404022
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7242188356691502204}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

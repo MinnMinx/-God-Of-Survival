@@ -61,7 +61,6 @@ namespace VuKhiPhu
         // quả cầu lửa nào chạm vào kẻ địch và gây sát thương 
         void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("trigger fire");
             // Destroy(gameObject); 
 
             var enemy = other.gameObject.GetComponent<Monster.Monster>();

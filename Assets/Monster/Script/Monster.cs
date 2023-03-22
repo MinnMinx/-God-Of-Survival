@@ -147,7 +147,6 @@ namespace Monster
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            Debug.Log("takedame");
             var a = collision.gameObject.GetComponent<Core.PlayerController>();
             if (a != null && cd > atkspeed)
             {
@@ -178,6 +177,7 @@ namespace Monster
             int xp = tinhanh == true ? 2 : 1;
             player.ReceiveExp(xp);
             Drop();
+            MonsterSpawn.spawned.Remove(gameObject);
             Destroy(this.gameObject);
         }
 
@@ -215,16 +215,17 @@ namespace Monster
             if (check <= itemRate)
             {
                 int check2 = rnd.Next(100);
-                if (check2 < 70)
+                if (check2 < 50)
                 {
-                    int check3 = rnd.Next(listItem.Count -1);
+                    int check3 = rnd.Next(listItem.Count);
                     Instantiate(listItem[check3], transform.position, Quaternion.identity);
                 }
                 else
                 {
                     if (subWeapon.Count > 0)
                     {
-                        int check3 = rnd.Next(subWeapon.Count -1);
+                        
+                        int check3 = rnd.Next(subWeapon.Count);
                         Instantiate(subWeapon[check3], transform.position, Quaternion.identity);
                     }
                 }

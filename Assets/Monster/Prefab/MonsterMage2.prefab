@@ -148,7 +148,9 @@ MonoBehaviour:
   listItem:
   - {fileID: 5595544873782067161, guid: 96e1172b857c25e4c82837fbb0690677, type: 3}
   - {fileID: 6280061216681449979, guid: 3c85546fa23deec49bf880e3d8f4305b, type: 3}
-  subWeapon: []
+  subWeapon:
+  - {fileID: 7242188356691502204, guid: 005f7108c6bacdf4b925dbcbb2e3a56e, type: 3}
+  - {fileID: 4324797206129515815, guid: 038bfdc34d81f5a429cb135863b56bda, type: 3}
   speed: 0
   bullet: {fileID: 842105427220834607, guid: 5a67994a86691bf4fad1d699226eb0a2, type: 3}
   bulletSp: 8

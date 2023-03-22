@@ -101,6 +101,13 @@ MonoBehaviour:
   ATKBase: 3
   ATKSpeed: 1
   time: 0
+  bombPrefab: {fileID: 2190238740480091446, guid: 64ff1308b58578347991b3838653c0bb, type: 3}
+  player: {fileID: 0}
+  spawnTime: 5
+  explosionRadius: 5
+  explosionForce: 1000
+  explosionTime: 3
+  explosionEffect: {fileID: 0}
 --- !u!58 &3034311821874210202
 CircleCollider2D:
   m_ObjectHideFlags: 0
