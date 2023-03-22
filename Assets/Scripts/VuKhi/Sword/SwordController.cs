@@ -6,12 +6,19 @@ using UnityEngine;
 {
     public class SwordController : Base
     {
-       
+        [SerializeField]
+        private Transform parent;
+		[SerializeField]
+		private Core.PlayerController player;
+		[SerializeField]
+		private SwordFxController fx;
+		float time;
 
         // Start is called before the first frame update
         void Start()
         {
-
+            time = 0;
+            player.SetWeaponSpriteObject(parent);
         }
 
         // Update is called once per frame
@@ -23,8 +30,8 @@ using UnityEngine;
             {
                 //Tấn công 1 lần (Di chuyển 3/4 hình tròn)
 
-                time = 1;
-                Debug.Log("Đã bị tấn công" + ATKBase);
+                time = 1 / ATKSpeed;
+                fx.Swing();
             }
 
         }
