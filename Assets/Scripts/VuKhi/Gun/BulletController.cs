@@ -1,37 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    
+    private float damage;
+    private bool goThrough;
+    private List<GameObject> shooted;
+
     // Start is called before the first frame update
-    void Start()
+    public void Init(float damage, Vector2 velocityVector, bool goThrough)
     {
-        GetComponent<Rigidbody2D>().velocity = 25f * transform.right; 
+        this.damage = damage;
+        this.goThrough = goThrough;
+        GetComponent<Rigidbody2D>().velocity = velocityVector;
+        if (goThrough)
+            shooted = new List<GameObject>(10);
     }
 
-    // Update is called once per frame
-    void Update()
+	private void OnTriggerEnter2D(Collider2D other)
     {
-        
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.tag == "Enemy")
+        Monster.Monster enemy = other.gameObject.GetComponent<Monster.Monster>();
+        if (enemy != null)
         {
-            Debug.Log("ouch");
-
-            Destroy(gameObject); // hủy đối tượng viên đạn
-
-            var enemy = other.gameObject.GetComponent<Monster.Monster>();
-            if(enemy != null)
+            if (!goThrough) {
+				enemy.takedamage(damage);
+				Destroy(gameObject); // hủy đối tượng viên đạn
+			}
+            else if (!shooted.Contains(enemy.gameObject))
             {
-                enemy.takedamage(1);
-            }
-
-        }
+                shooted.Add(gameObject);
+				enemy.takedamage(damage);
+			}
+		}
     }
+
+	private void OnBecameInvisible()
+	{
+        Destroy(gameObject);
+	}
 }

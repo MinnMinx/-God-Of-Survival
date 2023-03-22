@@ -14,7 +14,11 @@ namespace Core
 
         [SerializeField]
         private SpriteRenderer spr;
-        [SerializeField]
+		[SerializeField]
+		private Transform addtionFlipSpr;
+		[SerializeField]
+		private ParticleSystem shieldBreak;
+		[SerializeField]
         private Animator anim;
 
         public float BaseAttack => stats.baseAtk * stats.atkMultipler;
@@ -78,7 +82,19 @@ namespace Core
         }
         void _StopHit() => _TurnOffBool("hit");
 
-        public void FlipSprite(bool right = true) => spr.flipX = right;
+        public void FlipSprite(bool right = true)
+        {
+            spr.flipX = right;
+            if (addtionFlipSpr != null)
+            {
+                addtionFlipSpr.localScale = right ? new Vector3(-1, 1, 1) : Vector3.one;
+            }
+        }
+
+        public void SetWeaponSpriteObject(Transform weapon)
+        {
+            this.addtionFlipSpr = weapon;
+        }
 
         public void TakeDamage(float value)
         {
@@ -95,7 +111,12 @@ namespace Core
                 float damageLeft = value - stats.Shield;
                 stats.Shield = 0;
                 stats.Health -= damageLeft;
-            }
+                if (shieldBreak != null)
+                {
+                    shieldBreak.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                    shieldBreak.Play(true);
+                }
+			}
             else
             {
                 stats.Health -= value;
@@ -118,7 +139,7 @@ namespace Core
         {
             private int level;
             private float currentExp;
-            private float expUntilLevelUp => 10 * Mathf.Pow(level, 0.7f);
+            private float expUntilLevelUp => 8 * Mathf.Pow(level, 0.5f);
 
             public int Level => level;
             public float CurrentExp => currentExp;

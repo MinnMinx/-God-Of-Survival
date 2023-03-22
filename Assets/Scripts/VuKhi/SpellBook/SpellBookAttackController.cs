@@ -30,7 +30,7 @@ namespace VuKhi
 				monster = collidedParticles[numCollisionEvents].colliderComponent.GetComponent<Monster.Monster>();
 				if (monster != null)
 				{
-					monster.takedamage(_parent.ATKBase);
+					monster.takedamage(_parent.ATKBase + _parent.PlayerAtk);
 					_parent.Lv3Behavior(monster);
 					_parent.Lv5Behavior();
 				}
