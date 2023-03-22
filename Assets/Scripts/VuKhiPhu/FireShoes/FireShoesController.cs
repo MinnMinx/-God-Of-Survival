@@ -10,6 +10,8 @@ public class FireShoesController : Base
     private GameObject player;
     [SerializeField]
     private GameObject fireShoes;
+
+    public static bool maxShoes = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +47,7 @@ public class FireShoesController : Base
             }
             else
             {
+                maxShoes = true;
                 player.Heal(20);
                 Destroy(gameObject);
             }

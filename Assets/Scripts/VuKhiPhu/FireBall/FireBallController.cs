@@ -20,6 +20,7 @@ namespace VuKhiPhu
         private bool active = false;
         private static int count = 0;
         public float orbitDistance = 3.0f;
+        public static bool maxFire = false;
 
         void Start()
         {
@@ -69,6 +70,7 @@ namespace VuKhiPhu
                 }
                 else
                 {
+                    maxFire = true;
                     player.Heal(20);
                     Destroy(gameObject);
                 }

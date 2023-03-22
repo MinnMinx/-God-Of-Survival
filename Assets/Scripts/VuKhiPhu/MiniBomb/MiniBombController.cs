@@ -20,6 +20,7 @@ namespace VuKhiPhu
         //public float explosionTime = 3f; // Thời gian phát nổ
         public GameObject explosionEffect; // Hiệu ứng nổ
         public GameObject bomcontrol;
+        public static bool maxBomb = false;
 
 
         private void Start()
@@ -51,6 +52,7 @@ namespace VuKhiPhu
                 }
                 else
                 {
+                    maxBomb = true;
                     player.Heal(20);
                     Destroy(gameObject);
                 }

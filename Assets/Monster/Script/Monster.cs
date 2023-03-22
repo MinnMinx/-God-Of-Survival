@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
+using VuKhiPhu;
 using PlayerCtrl = Core.PlayerController;
 
 namespace Monster
@@ -143,6 +145,32 @@ namespace Monster
                 this.Despawn();
             }
 
+            if (FireShoesController.maxShoes == true)
+            {
+                var a = subWeapon.Where(x => x.GetComponent<FireShoesController>() != null).FirstOrDefault();
+                if (a != null)
+                {
+                    subWeapon.Remove(a);
+                }
+            }
+
+            if (FireBallController.maxFire == true)
+            {
+                var a = subWeapon.Where(x => x.GetComponent<FireBallController>() != null).FirstOrDefault();
+                if (a != null)
+                {
+                    subWeapon.Remove(a);
+                }
+            }
+
+            if (MiniBombController.maxBomb == true)
+            {
+                var a = subWeapon.Where(x => x.GetComponent<MiniBombController>() != null).FirstOrDefault();
+                if (a != null)
+                {
+                    subWeapon.Remove(a);
+                }
+            }
         }
 
         private void OnTriggerStay2D(Collider2D collision)

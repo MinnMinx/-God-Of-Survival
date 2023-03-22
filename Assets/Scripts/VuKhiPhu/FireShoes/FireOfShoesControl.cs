@@ -30,8 +30,8 @@ public class FireOfShoesControl : Base
             item.time2 += Time.deltaTime;
             if (item.time2 >= liftime)
             {
-                Destroy(item.fire);
                 list.Remove(item);
+                Destroy(item.fire);              
             }
         }
 
