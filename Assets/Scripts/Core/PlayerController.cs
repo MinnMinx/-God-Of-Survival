@@ -32,7 +32,7 @@ namespace Core
             Score += Time.deltaTime;
             if (IsDead)
             {
-                SceneManager.LoadScene("GameOver_Scene");
+                SceneManager.LoadScene(2);
             }
         }
 
