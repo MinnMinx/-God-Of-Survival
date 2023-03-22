@@ -104,7 +104,7 @@ namespace Monster
         public void Start()
         {
             anime = GetComponent<Animator>();
-            itemRate = 10f;
+            itemRate = 5f;
             tinhanhcheck();
             saveScreenSize();
         }
