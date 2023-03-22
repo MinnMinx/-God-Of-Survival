@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
+using VuKhiPhu;
 using PlayerCtrl = Core.PlayerController;
 
 namespace Monster
@@ -102,7 +104,7 @@ namespace Monster
         public void Start()
         {
             anime = GetComponent<Animator>();
-            itemRate = 50f;
+            itemRate = 5f;
             tinhanhcheck();
             saveScreenSize();
         }
@@ -143,6 +145,32 @@ namespace Monster
                 this.Despawn();
             }
 
+            if (FireShoesController.maxShoes == true)
+            {
+                var a = subWeapon.Where(x => x.GetComponent<FireShoesController>() != null).FirstOrDefault();
+                if (a != null)
+                {
+                    subWeapon.Remove(a);
+                }
+            }
+
+            if (FireBallController.maxFire == true)
+            {
+                var a = subWeapon.Where(x => x.GetComponent<FireBallController>() != null).FirstOrDefault();
+                if (a != null)
+                {
+                    subWeapon.Remove(a);
+                }
+            }
+
+            if (MiniBombController.maxBomb == true)
+            {
+                var a = subWeapon.Where(x => x.GetComponent<MiniBombController>() != null).FirstOrDefault();
+                if (a != null)
+                {
+                    subWeapon.Remove(a);
+                }
+            }
         }
 
         private void OnTriggerStay2D(Collider2D collision)
@@ -212,10 +240,10 @@ namespace Monster
         {
             System.Random rnd = new System.Random();
             int check = rnd.Next(100);
-            if (check <= itemRate)
+            if (check <= itemRate && !tinhanh)
             {
                 int check2 = rnd.Next(100);
-                if (check2 < 50)
+                if (check2 < 70)
                 {
                     int check3 = rnd.Next(listItem.Count);
                     Instantiate(listItem[check3], transform.position, Quaternion.identity);
@@ -228,6 +256,15 @@ namespace Monster
                         int check3 = rnd.Next(subWeapon.Count);
                         Instantiate(subWeapon[check3], transform.position, Quaternion.identity);
                     }
+                }
+            }
+            else if (tinhanh)
+            {
+                if (subWeapon.Count > 0)
+                {
+
+                    int check3 = rnd.Next(subWeapon.Count);
+                    Instantiate(subWeapon[check3], transform.position, Quaternion.identity);
                 }
             }
         }
