@@ -10,7 +10,7 @@ public class MenuController : MonoBehaviour
 	}
 
 	public void Exit() {
-        SceneManager.LoadScene(3);
+        Application.Quit();
     }
 
     public void GoToMenu()

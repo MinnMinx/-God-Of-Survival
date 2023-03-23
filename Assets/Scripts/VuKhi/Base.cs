@@ -7,7 +7,6 @@ namespace VuKhi
     {
         public float ATKBase = 3;
         public float ATKSpeed = 1;
-        public float time = 0;
 
         public virtual void GetExp(int value = 1) { }
         public virtual bool IsMaxLevel()
