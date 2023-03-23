@@ -1,3 +1,4 @@
+using Core;
 using Monster;
 using System;
 using System.Collections;
@@ -28,7 +29,8 @@ namespace Monster
         // Start is called before the first frame update
         void Start()
         {
-        }
+            player.OnLevelUp_Addition += SpecialLevelUpSpawn;
+		}
 
         // Update is called once per frame
         void Update()
@@ -55,13 +57,20 @@ namespace Monster
         }
 
 
+        void SpecialLevelUpSpawn(int level)
+        {
+            if (level % 5 == 0)
+            {
+                spawn(Camera.main.RandomPointOnEdgeScreen(), true);
+			}
+        }
 
-        public void spawn(Vector3 position)
+        public void spawn(Vector3 position, bool isSpecial = false)
         {
             System.Random rnd = new System.Random();
             GameObject monster = Instantiate(monsters[rnd.Next(monsters.Count)]);
             monster.transform.position = position;
-            monster.GetComponent<Monster>().SetPlayer(player);
+            monster.GetComponent<Monster>().SetPlayer(player, isSpecial);
             spawned.Add(monster);
         }
 
@@ -70,7 +79,7 @@ namespace Monster
         {
             level = player.Level;
             float a = (float)Math.Pow(level, heso);
-            spawnrate = 4/a;
+            spawnrate = player.Level < 15 ? 3 / a : player.Level < 30 ? 2 / a : 1 / a;
         }
 
         private void saveScreenSize()

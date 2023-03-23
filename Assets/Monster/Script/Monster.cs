@@ -18,6 +18,7 @@ namespace Monster
         private Core.PlayerController player;
         private Animator anime;
         private bool checkflip = true;
+        private bool specialSpawn = false;
 
         private Transform destination; // player's transfrom
         public Transform Des
@@ -55,7 +56,7 @@ namespace Monster
             set { hp = value; }
         }
 
-        private float heso = 0.5F;
+        private float heso = 0.9F;
 
         private float atkrange;
         public float Atkrange
@@ -98,7 +99,7 @@ namespace Monster
             get { return itemRate; }
             set { itemRate = value; }
         }
-
+        public static Action<Vector3> SpecialDropAction = null;
 
 
         public void Start()
@@ -109,12 +110,13 @@ namespace Monster
             saveScreenSize();
         }
 
-        public void SetPlayer(PlayerCtrl player)
+        public void SetPlayer(PlayerCtrl player, bool isSpecialSpawn = false)
         {
             this.player = player;
             Des = player.transform;
             level = player.Level;
-        }
+			specialSpawn = isSpecialSpawn;
+		}
 
         // Update được gọi mỗi frame
         public void Update()
@@ -226,6 +228,12 @@ namespace Monster
 
         private void tinhanhcheck()
         {
+            if (specialSpawn)
+            {
+				tinhanh = true;
+				return;
+            }
+
             System.Random rnd = new System.Random();
             int check = rnd.Next(100);
             if (check < 5)
@@ -240,6 +248,11 @@ namespace Monster
         {
             System.Random rnd = new System.Random();
             int check = rnd.Next(100);
+            if (tinhanh && (specialSpawn || check <= 2) && SpecialDropAction != null)
+            {
+                SpecialDropAction(transform.position);
+                return;
+            }
             if (check <= itemRate && !tinhanh)
             {
                 int check2 = rnd.Next(100);
@@ -262,7 +275,6 @@ namespace Monster
             {
                 if (subWeapon.Count > 0)
                 {
-
                     int check3 = rnd.Next(subWeapon.Count);
                     Instantiate(subWeapon[check3], transform.position, Quaternion.identity);
                 }

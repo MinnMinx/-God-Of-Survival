@@ -26,19 +26,16 @@ namespace VuKhi
         public void GetExp(int value)
         {
             currentExp += value;
-            while (currentExp > ExpTillNextLv)
+            while (currentExp >= ExpTillNextLv)
             {
                 var remain = currentExp - ExpTillNextLv;
                 currentExp = remain;
-                if (levelUpAction != null)
+                level++;
+				if (levelUpAction != null)
                 {
                     levelUpAction(level);
                 }
             }
 		}
-
-        public void _ChangeLevel(int level) { this.level = level; levelUpAction(level); }
-
-        public virtual void AdditionBehavior() { }
 	}
 }

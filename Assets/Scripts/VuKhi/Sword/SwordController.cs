@@ -12,13 +12,11 @@ using UnityEngine;
 		private Core.PlayerController player;
 		[SerializeField]
 		private SwordFxController fx;
-        private WeaponLeveling leveling;
+		private WeaponLeveling leveling;
 		float time;
-		[SerializeField]
-		int _level = 1;
 
         // Start is called before the first frame update
-        void Start()
+        public override void Init()
         {
             time = 0;
 			leveling = new WeaponLeveling();
@@ -29,10 +27,6 @@ using UnityEngine;
 
         void Update()
 		{
-			if (_level != leveling.Level)
-			{
-				leveling._ChangeLevel(_level);
-			}
 			fx.UpdateRotation(player.PlayerAngle);
 			time -= Time.deltaTime;
             if (time <= 0)
@@ -71,6 +65,24 @@ using UnityEngine;
 			}
 			fx.LevelUp(level);
 		}
+
+		public override void GetExp(int value = 1)
+		{
+			base.GetExp(value);
+			leveling.GetExp(value);
+		}
+
+		public override bool IsMaxLevel()
+		{
+			return leveling.Level >= 5;
+		}
+
+		public override float CurrentExp
+		{
+			get => (float)leveling.CurrentExp / leveling.ExpTillNextLv;
+		}
+
+		public override float Level => leveling.Level;
 	}
 }
 

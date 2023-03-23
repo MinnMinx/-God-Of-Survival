@@ -24,6 +24,7 @@ public class SwordFxController : MonoBehaviour
     {
         parent.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         parent.Play(true);
+		FxInvisible.GetComponent<SwordCollisionBehavior>().Clear();
 	}
 
     public void UpdateRotation(float angle)

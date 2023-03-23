@@ -31,6 +31,8 @@ namespace Core
         public float PlayerAngle { get; internal set; }
         private float Score = 0;
 
+        public Action<int> OnLevelUp_Addition { get; set; }
+
         private void Update()
         {
             Score += Time.deltaTime;
@@ -57,6 +59,10 @@ namespace Core
 
         private void OnLevelUp(int level)
         {
+            if (OnLevelUp_Addition != null)
+            {
+                OnLevelUp_Addition(level);
+			}
             stats.baseAtk = 0.125f * level;
         }
 
@@ -139,7 +145,7 @@ namespace Core
         {
             private int level;
             private float currentExp;
-            private float expUntilLevelUp => 8 * Mathf.Pow(level, 0.5f);
+            private float expUntilLevelUp => 6 * Mathf.Pow(level, 0.4f);
 
             public int Level => level;
             public float CurrentExp => currentExp;
