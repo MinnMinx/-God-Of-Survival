@@ -44,7 +44,7 @@ namespace Core
 
         private void OnDisable()
         {
-            PlayerPrefs.SetFloat("score", Score);
+            PlayerPrefs.SetFloat("score", Mathf.Floor(Score * Level * 100) / 100);
             PlayerPrefs.SetInt("level", Level);
         }
 

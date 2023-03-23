@@ -6283,7 +6283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ATKBase: 3
   ATKSpeed: 1
-  time: 0
   parent: {fileID: 965359410}
   player: {fileID: 8154960875292420856}
   fx: {fileID: 965359413}
@@ -6750,7 +6749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -33443,6 +33442,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BookSpell
       objectReference: {fileID: 0}
+    - target: {fileID: 1752468376017464877, guid: f486566a5984be74e9f752b3b66d5e15, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f486566a5984be74e9f752b3b66d5e15, type: 3}
 --- !u!4 &1696529570 stripped
@@ -38560,7 +38563,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ATKBase: 2
   ATKSpeed: 1
-  time: 0
   player: {fileID: 8154960875292420856}
   SprParent: {fileID: 943644999}
   bulletPrefab: {fileID: 1049581905902817904, guid: b15e4331873350c4b8611d6186f0ef98, type: 3}

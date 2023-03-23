@@ -47,7 +47,7 @@ namespace VuKhiPhu
                 {
                     minibom.ATKBase++;
                     minibom.cd -= 0.5f;
-                    minibom.speed += 0.2f;
+                    minibom.speed += 0.5f;
                     Destroy(gameObject);
                 }
                 else
