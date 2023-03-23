@@ -49,7 +49,7 @@ public class MiniBomb : Base
 
 
         monsters = GameObject.FindGameObjectsWithTag("Enemy").ToList();
-        monsters = monsters.Where(x => Vector3.Distance(player.position, x.transform.position) <= 10f).ToList();
+        monsters = monsters.Where(x => Vector3.Distance(player.position, x.transform.position) <= 15f).ToList();
         if (time > cd && count > 0 && monsters.Count > 0)
         {
             SpawnBomb(monsters.ElementAtOrDefault(0).transform.position);

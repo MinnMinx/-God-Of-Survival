@@ -12,6 +12,8 @@ using UnityEngine;
 		private Core.PlayerController player;
 		[SerializeField]
 		private SwordFxController fx;
+		[SerializeField]
+		private SoundWaveManager soundWaveManager;
 		private WeaponLeveling leveling;
 		float time;
 
@@ -33,6 +35,10 @@ using UnityEngine;
             {
                 time = 1 / ATKSpeed;
                 fx.Swing();
+				if (leveling.Level >= 5 && soundWaveManager != null)
+				{
+					soundWaveManager.Slash(player.PlayerAngle, ATKBase * 0.3f);
+				}
 			}
         }
 

@@ -51,6 +51,10 @@ namespace Core
         // Start is called before the first frame update
         void Start()
         {
+            if (SceneDataKeeper.Singleton != null)
+            {
+                anim.runtimeAnimatorController = SceneDataKeeper.Singleton.characterAnimator;
+            }
             playerLeveling = new PlayerLeveling(this.OnLevelUp);
             if (spr == null)
                 spr = GetComponent<SpriteRenderer>();
