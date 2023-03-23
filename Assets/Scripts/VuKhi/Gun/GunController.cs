@@ -17,7 +17,6 @@ namespace VuKhi
 		public float fireCdEach = 0.5f;
         private float lastFireTime;
 		private int numBulletFire = 1;
-		public int _level = 1;
 		private WeaponLeveling leveling;
 		private GameObject _prefabToSpawn;
 		private int stack = 0;
@@ -57,7 +56,7 @@ namespace VuKhi
             gameObj.GetComponent<BulletController>().Init(dmg, speed * new Vector2(Mathf.Cos(angleRad), Mathf.Sin(angleRad)), isSpecial);
         }
 
-		private void Start()
+		public override void Init()
 		{
             player.SetWeaponSpriteObject(SprParent);
             if (fireFX != null)
@@ -72,8 +71,6 @@ namespace VuKhi
 		// Update is called once per frame
 		void Update()
         {
-			if (_level != leveling.Level) leveling._ChangeLevel(_level);
-
             if (base.ATKSpeed > 0 && Time.time - lastFireTime > 1f / base.ATKSpeed)
             {
 				if (isSpecialShot)
@@ -140,7 +137,28 @@ namespace VuKhi
 					_prefabToSpawn = bulletPrefabLv5;
 					break;
 			}
+			if (level > 5)
+			{
+				ATKBase += 2f * (level - 5);
+			}
 		}
-	}
 
+		public override void GetExp(int value = 1)
+		{
+			base.GetExp(value);
+			leveling.GetExp(value);
+		}
+
+		public override bool IsMaxLevel()
+		{
+			return leveling.Level >= 5;
+		}
+
+		public override float CurrentExp
+		{
+			get => (float)leveling.CurrentExp/leveling.ExpTillNextLv;
+		}
+
+		public override float Level => leveling.Level;
+	}
 }

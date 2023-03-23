@@ -8,24 +8,14 @@ namespace VuKhi
         public float ATKBase = 3;
         public float ATKSpeed = 1;
         public float time = 0;
-        // Start is called before the first frame update
-        void Start()
+
+        public virtual void GetExp(int value = 1) { }
+        public virtual bool IsMaxLevel()
         {
-
+            return false;
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.GetComponent<PlayerController>() != null)
-            {
-                Debug.Log("player get item!");
-            }
-        }
-    }
+		public virtual float CurrentExp { get; }
+		public virtual float Level { get; }
+        public virtual void Init() { }
+	}
 }

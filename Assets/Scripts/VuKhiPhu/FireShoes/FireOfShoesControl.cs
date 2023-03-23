@@ -25,8 +25,9 @@ public class FireOfShoesControl : Base
     // Update is called once per frame
     void Update()
     {
-        foreach(var item in list)
+        for(int i = 0; i < list.Count; i++)
         {
+            var item = list[i];
             item.time2 += Time.deltaTime;
             if (item.time2 >= liftime)
             {

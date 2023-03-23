@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 	void Start()
     {
         timer = 0;
-        EnablePauseScreen(false);
+		EnablePauseScreen(false);
         CloseQuitConfirm();
 	}
 
@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScene()
     {
+        Time.timeScale = 1f;
+        Resources.UnloadUnusedAssets();
         SceneManager.LoadScene("GameOver_Scene", LoadSceneMode.Single);
     }
 

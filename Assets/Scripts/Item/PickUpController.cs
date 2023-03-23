@@ -44,6 +44,11 @@ namespace Item {
             for (int i = 0; i < pickingUpItems.Count; i++)
             {
                 var pickingItem = pickingUpItems[i];
+                if (pickingItem == null)
+                {
+                    pickingUpItems.RemoveAt(i--);
+					continue;
+                }
                 pickingItem.transform.position = Vector3.MoveTowards(pickingItem.transform.position, contextObjects.player.transform.position, deltaTime * pickUpFlySpeed);
                 if (Vector3.Distance(pickingItem.transform.position, contextObjects.player.transform.position) <= 0.3f)
                 {

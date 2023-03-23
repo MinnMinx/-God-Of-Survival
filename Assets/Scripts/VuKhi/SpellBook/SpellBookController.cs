@@ -25,7 +25,7 @@ namespace VuKhi
 
 		public float PlayerAtk => player.BaseAttack;
 
-		private void Start()
+		public override void Init()
 		{
 			if (ps != null)
 			{
@@ -105,6 +105,10 @@ namespace VuKhi
 					pushBackValue = 0.4f;
 					break;
             }
+			if (level > 5)
+			{
+				ATKBase += 2f * (level - 5);
+			}
         }
 		public void Lv5Behavior()
 		{
@@ -126,5 +130,23 @@ namespace VuKhi
 			var pos = monster.transform.position;
 			monster.transform.position -= (Camera.main.CenterPosition() - pos).normalized * pushBackValue;
 		}
+
+		public override void GetExp(int value = 1)
+		{
+			base.GetExp(value);
+			leveling.GetExp(value);
+		}
+
+		public override bool IsMaxLevel()
+		{
+			return leveling.Level >= 5;
+		}
+
+		public override float CurrentExp
+		{
+			get => (float)leveling.CurrentExp / leveling.ExpTillNextLv;
+		}
+
+		public override float Level => leveling.Level;
 	}
 }
