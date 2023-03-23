@@ -140,11 +140,11 @@ namespace Monster
                 Attack();
             }
 
-            if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn();
+            if (distance - (screenRight - screenLeft) * 1.5 >= 0) this.Despawn(true);
 
             if (hp <= 0)
             {
-                this.Despawn();
+                this.Despawn(false);
             }
 
             if (FireShoesController.maxShoes == true)
@@ -202,11 +202,14 @@ namespace Monster
             hp = hp - dame;
         }
 
-        void Despawn()
+        void Despawn(bool isOutOfRange = false)
         {
-            int xp = tinhanh == true ? 2 : 1;
-            player.ReceiveExp(xp);
-            Drop();
+            if (!isOutOfRange)
+			{
+				int xp = tinhanh == true ? 2 : 1;
+				player.ReceiveExp(xp);
+                Drop();
+            }
             MonsterSpawn.spawned.Remove(gameObject);
             Destroy(this.gameObject);
         }
