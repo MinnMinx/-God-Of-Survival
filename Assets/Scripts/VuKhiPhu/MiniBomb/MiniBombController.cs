@@ -13,12 +13,10 @@ namespace VuKhiPhu
 {
     public class MiniBombController : Base
     {
-        public GameObject bombPrefab;
         public float spawnTime = 5f;
         //public float explosionRadius = 5f; // Bán kính của vùng nổ
         //public float explosionForce = 1000f; // Lực nổ
         //public float explosionTime = 3f; // Thời gian phát nổ
-        public GameObject explosionEffect; // Hiệu ứng nổ
         public GameObject bomcontrol;
         public static bool maxBomb = false;
 

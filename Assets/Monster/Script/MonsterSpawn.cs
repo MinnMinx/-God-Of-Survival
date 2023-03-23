@@ -70,7 +70,7 @@ namespace Monster
         {
             level = player.Level;
             float a = (float)Math.Pow(level, heso);
-            spawnrate = 4/a;
+            spawnrate = 3/a;
         }
 
         private void saveScreenSize()
