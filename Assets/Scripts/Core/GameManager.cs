@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
 	void Start()
     {
         timer = 0;
+        Application.targetFrameRate = 60;
 		EnablePauseScreen(false);
         CloseQuitConfirm();
 	}

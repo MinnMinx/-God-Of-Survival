@@ -21,7 +21,7 @@ namespace Core
         {
             if (SceneDataKeeper.Singleton != null)
 			{
-				mapMaterial.SetTexture("_MainTex", SceneDataKeeper.Singleton.mapChoice);
+				mapMaterial.mainTexture = SceneDataKeeper.Singleton.mapChoice;
 				uvScale = SceneDataKeeper.Singleton.mapScale;
 			}
             Refresh();

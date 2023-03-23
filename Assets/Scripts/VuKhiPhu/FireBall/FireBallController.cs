@@ -31,8 +31,6 @@ namespace VuKhiPhu
 
         void Orbit()
         {
-					//fireChild[i].position = player.position + (transform.position - player.position).normalized * orbitDistance;
-					//fireChild[i].RotateAround(player.position, Vector3.forward, speed * Time.deltaTime);
 			float angle = 360f / count * index + Time.time * speed * 20f;
 			transform.position = new Vector3(
 					Mathf.Cos(angle * Mathf.Deg2Rad),
@@ -55,7 +53,10 @@ namespace VuKhiPhu
             if (player != null && index <= 0)
             {
 				this.player = other.transform;
-				index = ++count;
+				if (count < 10)
+				{
+					index = ++count;
+				}
 				LevelUp();
 			}
         }
@@ -85,9 +86,11 @@ namespace VuKhiPhu
 					speed = 16f;
 					break;
 			}
-			if (count > 6)
+			if (count > 5)
 			{
 				player.GetComponent<Core.PlayerController>().Heal(20);
+				if (index < 0)
+					Destroy(gameObject);
 			}
 		}
     }

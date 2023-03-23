@@ -77,8 +77,8 @@ public class SelectScreenManager : MonoBehaviour
     public void StartPlay()
     {
         SceneDataKeeper.Singleton.WeaponChoice = selectableWeapon[weaponIndex].ChoiceValue;
-        SceneDataKeeper.Singleton.mapChoice = selectableMap[weaponIndex].texture;
-        SceneDataKeeper.Singleton.mapScale = selectableMap[weaponIndex].scale;
+        SceneDataKeeper.Singleton.mapChoice = selectableMap[mapIndex].texture;
+        SceneDataKeeper.Singleton.mapScale = selectableMap[mapIndex].scale;
 		SceneManager.LoadScene("PlayScene", LoadSceneMode.Single);
 		Resources.UnloadUnusedAssets();
 	}
