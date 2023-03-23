@@ -105,6 +105,10 @@ namespace VuKhi
 					pushBackValue = 0.4f;
 					break;
             }
+			if (level > 5)
+			{
+				ATKBase += 2f * (level - 5);
+			}
         }
 		public void Lv5Behavior()
 		{

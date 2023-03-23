@@ -137,6 +137,10 @@ namespace VuKhi
 					_prefabToSpawn = bulletPrefabLv5;
 					break;
 			}
+			if (level > 5)
+			{
+				ATKBase += 2f * (level - 5);
+			}
 		}
 
 		public override void GetExp(int value = 1)

@@ -63,6 +63,10 @@ using UnityEngine;
 					ATKSpeed = 1.5f;
 					break;
 			}
+			if (level > 5)
+			{
+				ATKBase += 3.5f * (level - 5);
+			}
 			fx.LevelUp(level);
 		}
 

@@ -22,7 +22,14 @@ public class WeaponManager : MonoBehaviour
 	private void Start()
 	{
 		Monster.Monster.SpecialDropAction = SpawnLevelUpItem;
-		ChooseWeapon(2);
+		if (SceneDataKeeper.Singleton != null)
+		{
+			ChooseWeapon(SceneDataKeeper.Singleton.WeaponChoice);
+		}
+		else
+		{
+			ChooseWeapon(0);
+		}
 		_activeWeapon.Init();
 		UpdateWeaponUI();
 	}
@@ -63,16 +70,13 @@ public class WeaponManager : MonoBehaviour
 
 	void LevelUpWeapon()
 	{
-		if (!_activeWeapon.IsMaxLevel())
-		{
-			_activeWeapon.GetExp();
-			UpdateWeaponUI();
-		}
-		else
+		if (_activeWeapon.IsMaxLevel())
 		{
 			player.Heal(50);
 			player.HealShield(30);
 		}
+		_activeWeapon.GetExp();
+		UpdateWeaponUI();
 	}
 
 	void UpdateWeaponUI()

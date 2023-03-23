@@ -19,8 +19,13 @@ namespace Core
         // Start is called before the first frame update
         void Start()
         {
+            if (SceneDataKeeper.Singleton != null)
+			{
+				mapMaterial.SetTexture("_MainTex", SceneDataKeeper.Singleton.mapChoice);
+				uvScale = SceneDataKeeper.Singleton.mapScale;
+			}
             Refresh();
-        }
+		}
 
         public void Move(float offsetX, float offsetY)
         {

@@ -14708,13 +14708,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e5237d8d210e7c4ba67d51f7ed090e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ATKBase: 1
+  ATKBase: 1.5
   ATKSpeed: 1
   time: 0
   player: {fileID: 0}
   weaponSpr: {fileID: 7652487375474910507}
   ps: {fileID: 1696529576}
-  _level: 0
 --- !u!1 &2788673234073822720
 GameObject:
   m_ObjectHideFlags: 0
