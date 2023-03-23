@@ -34,14 +34,16 @@ public class MiniBomb : Base
     private void Update()
     {
         time += Time.deltaTime;
-        foreach (var item in boms)
+        for (int i = 0; i < boms.Count; i++)
         {
+            var item = boms[i];
             item.timebom += Time.deltaTime;
             if (item.timebom >= lifetime && item.bomprefab != null)
             {
                 Explosion(item.bomprefab.transform.position);
                 Destroy(item.bomprefab);
-                boms.Remove(item);
+                boms.RemoveAt(i);
+                i--;
             }
         }
 

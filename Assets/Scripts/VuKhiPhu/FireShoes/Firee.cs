@@ -22,7 +22,6 @@ public class Firee : VuKhi.Base
         var enemy = other.gameObject.GetComponent<Monster.Monster>();
         if (enemy != null)
         {
-            Debug.Log("ouch fire");
             enemy.takedamage(ATKBase);
         }
     }

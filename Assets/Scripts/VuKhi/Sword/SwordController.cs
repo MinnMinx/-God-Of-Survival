@@ -12,40 +12,65 @@ using UnityEngine;
 		private Core.PlayerController player;
 		[SerializeField]
 		private SwordFxController fx;
+        private WeaponLeveling leveling;
 		float time;
+		[SerializeField]
+		int _level = 1;
 
         // Start is called before the first frame update
         void Start()
         {
             time = 0;
-            player.SetWeaponSpriteObject(parent);
+			leveling = new WeaponLeveling();
+			leveling.Initialize(1, LevelUp);
         }
 
         // Update is called once per frame
 
         void Update()
-        {
-            time -= Time.deltaTime;
+		{
+			if (_level != leveling.Level)
+			{
+				leveling._ChangeLevel(_level);
+			}
+			fx.UpdateRotation(player.PlayerAngle);
+			time -= Time.deltaTime;
             if (time <= 0)
             {
-                //Tấn công 1 lần (Di chuyển 3/4 hình tròn)
-
                 time = 1 / ATKSpeed;
                 fx.Swing();
-            }
-
-        }
-        //khi đối tượng chạm vào quái 
-        void OnCollisionEnter2D(Collision2D col)
-        {
-
-
+			}
         }
 
-        void Attak()
-        {
+        public float Damage => ATKBase + player.BaseAttack;
 
-        }
-    }
+		void LevelUp(int level)
+		{
+			switch (level)
+			{
+				case 1:
+					base.ATKBase = 3f;
+					ATKSpeed = 1f;
+					break;
+				case 2:
+					base.ATKBase = 3.2f;
+					ATKSpeed = 1.1f;
+					break;
+				case 3:
+					base.ATKBase = 3.5f;
+					ATKSpeed = 1.2f;
+					break;
+				case 4:
+					base.ATKBase = 3.8f;
+					ATKSpeed = 1.3f;
+					break;
+				case 5:
+					base.ATKBase = 4f;
+					ATKSpeed = 1.5f;
+					break;
+			}
+			fx.LevelUp(level);
+		}
+	}
 }
 
