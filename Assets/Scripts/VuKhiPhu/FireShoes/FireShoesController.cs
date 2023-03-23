@@ -19,7 +19,8 @@ public class FireShoesController : Base
         {
             other.gameObject.AddComponent<FireOfShoesControl>();
             other.gameObject.GetComponent<FireOfShoesControl>().fireshoes = this.fireShoes;
-        }
+			Destroy(gameObject);
+		}
         else if (player != null && firecheck != null)
         {
             if (firecheck.count <= 5)
@@ -30,8 +31,8 @@ public class FireShoesController : Base
             else
             {
 				player.Heal(20);
-            }
+			}
+			Destroy(gameObject);
 		}
-		Destroy(gameObject);
 	}
 }

@@ -38,7 +38,7 @@ namespace Core
             Score += Time.deltaTime;
             if (IsDead)
             {
-                SceneManager.LoadScene(2);
+				SceneManager.LoadScene("GameOver_Scene", LoadSceneMode.Single);
             }
         }
 
