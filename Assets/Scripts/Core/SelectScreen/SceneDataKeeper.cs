@@ -23,5 +23,5 @@ public class SceneDataKeeper : MonoBehaviour
     public int WeaponChoice { get; set; }
     public Texture2D mapChoice { get; set; }
 	public Vector2 mapScale { get; set; }
-	// public ANimatorCo
+	public RuntimeAnimatorController characterAnimator { get; set; }
 }
