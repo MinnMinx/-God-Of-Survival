@@ -1,6 +1,6 @@
 Platform: Android
 
-Demo APK: ![Link](https://drive.usercontent.google.com/download?id=1Qzn_T3ttCEwQf5BGrfhNF3NPhgFoc1wn&export=download)
+Demo APK: [Link](https://drive.usercontent.google.com/download?id=1Qzn_T3ttCEwQf5BGrfhNF3NPhgFoc1wn&export=download)
 
 Screenshots:
 ![336661762_738448888009229_1632451168155759828_n](https://github.com/MinnMinx/-God-Of-Survival/assets/41360955/fb885fea-0b54-4bde-9ee0-a4f49739d8c4)
